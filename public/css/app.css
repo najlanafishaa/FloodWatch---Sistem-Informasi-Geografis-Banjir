@@ -1,0 +1,214 @@
+/* ==========================================================================
+   FloodWatch - Core Design System & Global Stylesheet
+   ========================================================================== */
+
+/* Import Premium Google Fonts */
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Outfit:wght@400;500;600;700;800&display=swap');
+
+:root {
+    /* Harmony Palette (HSL tailored) */
+    --bg-dark: hsl(222, 47%, 9%);
+    --bg-surface: hsla(223, 47%, 15%, 0.7);
+    --bg-card: hsla(223, 47%, 15%, 0.85);
+    --border-glass: hsla(223, 47%, 25%, 0.35);
+    --border-hover: hsla(174, 100%, 41%, 0.3);
+    
+    /* Accents */
+    --accent-teal: hsl(174, 100%, 41%);
+    --accent-blue: hsl(210, 100%, 50%);
+    --accent-indigo: hsl(250, 100%, 65%);
+    
+    /* Status Colors (Curated HSL) */
+    --status-awas: hsl(354, 76%, 53%);     /* Crimson Alert */
+    --status-siaga: hsl(24, 95%, 53%);      /* Vibrant Orange */
+    --status-waspada: hsl(45, 95%, 50%);    /* Sun Gold */
+    --status-aman: hsl(142, 70%, 45%);      /* Emerald Green */
+    
+    /* Status Light Transparents for Badges */
+    --status-awas-bg: hsla(354, 76%, 53%, 0.15);
+    --status-siaga-bg: hsla(24, 95%, 53%, 0.15);
+    --status-waspada-bg: hsla(45, 95%, 50%, 0.15);
+    --status-aman-bg: hsla(142, 70%, 45%, 0.15);
+
+    /* Text Colors */
+    --text-primary: hsl(210, 40%, 98%);
+    --text-secondary: hsl(215, 20%, 75%);
+    --text-muted: hsl(217, 13%, 55%);
+    --text-dark: hsl(222, 47%, 11%);
+    
+    /* Glows & Shadows */
+    --glow-teal: 0 0 15px hsla(174, 100%, 41%, 0.4);
+    --glow-awas: 0 0 15px hsla(354, 76%, 53%, 0.4);
+    --shadow-premium: 0 8px 32px 0 rgba(0, 0, 0, 0.37);
+    --shadow-inset: inset 0 2px 4px 0 rgba(255, 255, 255, 0.05);
+    
+    /* Transition Speed */
+    --transition-smooth: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+/* Base Reset & Styles */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: 'Inter', sans-serif;
+}
+
+body {
+    background-color: var(--bg-dark);
+    color: var(--text-primary);
+    min-height: 100vh;
+    overflow-x: hidden;
+    line-height: 1.6;
+}
+
+h1, h2, h3, h4, h5, h6 {
+    font-family: 'Outfit', sans-serif;
+    color: var(--text-primary);
+    font-weight: 700;
+}
+
+a {
+    color: inherit;
+    text-decoration: none;
+    transition: var(--transition-smooth);
+}
+
+/* Glassmorphism General Style */
+.glass-panel {
+    background: var(--bg-card);
+    backdrop-filter: blur(16px);
+    -webkit-backdrop-filter: blur(16px);
+    border: 1px solid var(--border-glass);
+    box-shadow: var(--shadow-premium), var(--shadow-inset);
+    border-radius: 16px;
+    transition: var(--transition-smooth);
+}
+
+/* Buttons */
+.btn-primary {
+    background: linear-gradient(135deg, var(--accent-teal), hsl(174, 100%, 30%));
+    color: var(--text-dark);
+    font-weight: 600;
+    padding: 0.8rem 1.8rem;
+    border-radius: 50px;
+    border: none;
+    cursor: pointer;
+    font-family: 'Outfit', sans-serif;
+    transition: var(--transition-smooth);
+    display: inline-flex;
+    align-items: center;
+    gap: 0.5rem;
+    box-shadow: var(--glow-teal);
+}
+
+.btn-primary:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 0 25px hsla(174, 100%, 41%, 0.6);
+    filter: brightness(1.1);
+}
+
+.btn-secondary {
+    background: transparent;
+    color: var(--text-primary);
+    border: 1px solid var(--border-glass);
+    padding: 0.8rem 1.8rem;
+    border-radius: 50px;
+    font-weight: 600;
+    cursor: pointer;
+    font-family: 'Outfit', sans-serif;
+    transition: var(--transition-smooth);
+    display: inline-flex;
+    align-items: center;
+    gap: 0.5rem;
+}
+
+.btn-secondary:hover {
+    background: hsla(223, 47%, 20%, 0.5);
+    border-color: var(--accent-teal);
+    transform: translateY(-2px);
+}
+
+/* Status Badges */
+.badge-status {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.4rem;
+    padding: 0.35rem 0.8rem;
+    border-radius: 50px;
+    font-size: 0.8rem;
+    font-weight: 600;
+    text-transform: uppercase;
+    letter-spacing: 0.05em;
+}
+
+.badge-status::before {
+    content: '';
+    display: inline-block;
+    width: 6px;
+    height: 6px;
+    border-radius: 50%;
+}
+
+.badge-awas {
+    background-color: var(--status-awas-bg);
+    color: var(--status-awas);
+    border: 1px solid hsla(354, 76%, 53%, 0.3);
+}
+.badge-awas::before { background-color: var(--status-awas); box-shadow: 0 0 8px var(--status-awas); }
+
+.badge-siaga {
+    background-color: var(--status-siaga-bg);
+    color: var(--status-siaga);
+    border: 1px solid hsla(24, 95%, 53%, 0.3);
+}
+.badge-siaga::before { background-color: var(--status-siaga); box-shadow: 0 0 8px var(--status-siaga); }
+
+.badge-waspada {
+    background-color: var(--status-waspada-bg);
+    color: var(--status-waspada);
+    border: 1px solid hsla(45, 95%, 50%, 0.3);
+}
+.badge-waspada::before { background-color: var(--status-waspada); box-shadow: 0 0 8px var(--status-waspada); }
+
+.badge-aman {
+    background-color: var(--status-aman-bg);
+    color: var(--status-aman);
+    border: 1px solid hsla(142, 70%, 45%, 0.3);
+}
+.badge-aman::before { background-color: var(--status-aman); box-shadow: 0 0 8px var(--status-aman); }
+
+/* Custom Scrollbar */
+::-webkit-scrollbar {
+    width: 8px;
+    height: 8px;
+}
+
+::-webkit-scrollbar-track {
+    background: var(--bg-dark);
+}
+
+::-webkit-scrollbar-thumb {
+    background: var(--border-glass);
+    border-radius: 4px;
+}
+
+::-webkit-scrollbar-thumb:hover {
+    background: var(--accent-teal);
+}
+
+/* Animations */
+@keyframes pulse {
+    0% {
+        transform: scale(0.95);
+        box-shadow: 0 0 0 0 rgba(174, 100, 41, 0.4);
+    }
+    70% {
+        transform: scale(1);
+        box-shadow: 0 0 0 10px rgba(174, 100, 41, 0);
+    }
+    100% {
+        transform: scale(0.95);
+        box-shadow: 0 0 0 0 rgba(174, 100, 41, 0);
+    }
+}

@@ -1,0 +1,23 @@
+{
+  "type": "FeatureCollection",
+  "features": [
+    {
+      "type": "Feature",
+      "properties": {
+        "name": "Wilayah Fokus Bandar Lampung & Sekitarnya (Simulasi)"
+      },
+      "geometry": {
+        "type": "Polygon",
+        "coordinates": [
+          [
+            [105.18000000, -5.35000000],
+            [105.32000000, -5.35000000],
+            [105.32000000, -5.48000000],
+            [105.18000000, -5.48000000],
+            [105.18000000, -5.35000000]
+          ]
+        ]
+      }
+    }
+  ]
+}
