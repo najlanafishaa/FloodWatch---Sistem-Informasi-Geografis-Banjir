@@ -11,7 +11,7 @@
             justify-content: center;
             padding: 2rem;
             position: relative;
-            background-image: radial-gradient(circle at 50% 30%, hsla(174, 100%, 41%, 0.12) 0%, transparent 60%);
+            background: radial-gradient(circle at 50% 30%, rgba(252, 246, 189, 0.4) 0%, rgba(255, 255, 255, 1) 90%);
         }
 
         .login-card {
@@ -21,6 +21,10 @@
             display: flex;
             flex-direction: column;
             gap: 2rem;
+            background: #FFFFFF;
+            border: 2px solid var(--primary-dark-blue);
+            box-shadow: var(--shadow-flat);
+            border-radius: 20px;
         }
 
         .login-header {
@@ -30,19 +34,26 @@
         .login-logo {
             font-size: 1.8rem;
             font-weight: 800;
-            font-family: 'Outfit', sans-serif;
-            background: linear-gradient(135deg, var(--text-primary), var(--accent-teal));
-            -webkit-background-clip: text;
-            -webkit-text-fill-color: transparent;
+            font-family: 'Poppins', sans-serif;
+            color: var(--primary-dark-blue);
             margin-bottom: 0.5rem;
             display: inline-flex;
             align-items: center;
             gap: 0.5rem;
         }
 
+        .login-logo span {
+            color: var(--primary-dark-blue);
+        }
+        
+        .login-logo span span.brand-dot {
+            color: var(--primary-blue);
+        }
+
         .login-subtitle {
             font-size: 0.9rem;
             color: var(--text-secondary);
+            font-weight: 500;
         }
 
         .form-group {
@@ -53,26 +64,30 @@
         }
 
         .form-label {
+            font-family: 'Poppins', sans-serif;
             font-size: 0.88rem;
-            font-weight: 600;
-            color: var(--text-secondary);
+            font-weight: 700;
+            color: var(--primary-dark-blue);
         }
 
         .form-input {
             width: 100%;
-            background: hsla(223, 47%, 20%, 0.5);
-            border: 1px solid var(--border-glass);
+            background: #FFFFFF;
+            border: 2px solid var(--primary-dark-blue);
             padding: 0.9rem 1rem;
             border-radius: 12px;
-            color: var(--text-primary);
+            color: var(--primary-dark-blue);
+            font-weight: 600;
             font-size: 0.95rem;
             transition: var(--transition-smooth);
+            box-shadow: 2px 2px 0 var(--primary-dark-blue);
         }
 
         .form-input:focus {
             outline: none;
-            border-color: var(--accent-teal);
-            box-shadow: var(--glow-teal);
+            border-color: var(--primary-blue);
+            box-shadow: 4px 4px 0 var(--primary-dark-blue);
+            transform: translate(-1px, -1px);
         }
 
         .checkbox-container {
@@ -80,20 +95,23 @@
             align-items: center;
             gap: 0.5rem;
             font-size: 0.85rem;
-            color: var(--text-secondary);
+            color: var(--primary-dark-blue);
+            font-weight: 600;
             cursor: pointer;
         }
 
         .checkbox-input {
-            accent-color: var(--accent-teal);
+            accent-color: var(--primary-blue);
             width: 16px;
             height: 16px;
             cursor: pointer;
         }
 
         .login-back-btn {
+            font-family: 'Poppins', sans-serif;
             font-size: 0.88rem;
-            color: var(--text-muted);
+            color: var(--primary-dark-blue);
+            font-weight: 700;
             text-align: center;
             margin-top: 1rem;
             display: inline-flex;
@@ -103,26 +121,26 @@
         }
 
         .login-back-btn:hover {
-            color: var(--accent-teal);
+            color: var(--primary-blue);
         }
 
         .error-message {
-            color: var(--status-awas);
+            color: #EF476F;
             font-size: 0.8rem;
             margin-top: 0.3rem;
-            font-weight: 500;
+            font-weight: 600;
         }
     </style>
 @endsection
 
 @section('content')
     <div class="login-page-bg">
-        <div class="login-card glass-panel">
+        <div class="login-card">
             
             <!-- Login Brand Header -->
             <div class="login-header">
                 <a href="{{ route('landing') }}" class="login-logo">
-                    <svg xmlns="http://www.w3.org/2000/svg" width="26" height="26" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" style="color: var(--accent-teal);"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/></svg>
+                    <svg xmlns="http://www.w3.org/2000/svg" width="26" height="26" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" style="color: var(--primary-blue);"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/></svg>
                     <span>FloodWatch<span class="brand-dot">.</span></span>
                 </a>
                 <p class="login-subtitle">Sistem Informasi Geografis Banjir Lampung</p>
@@ -168,13 +186,13 @@
                 <!-- Action Button -->
                 <button type="submit" class="btn-primary" style="width: 100%; justify-content: center; font-size: 1rem; padding: 0.9rem;">
                     Masuk ke Dashboard
-                    <svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M15 3h4a2 2 0 0 1 2 2v14a2 2 0 0 1-2 2h-4"/><polyline points="10 17 15 12 10 7"/><line x1="15" y1="12" x2="3" y2="12"/></svg>
+                    <svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M15 3h4a2 2 0 0 1 2 2v14a2 2 0 0 1-2 2h-4"/><polyline points="10 17 15 12 10 7"/><line x1="15" y1="12" x2="3" y2="12"/></svg>
                 </button>
             </form>
 
             <!-- Back link -->
             <a href="{{ route('landing') }}" class="login-back-btn">
-                <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><line x1="19" y1="12" x2="5" y2="12"/><polyline points="12 19 5 12 12 5"/></svg>
+                <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><line x1="19" y1="12" x2="5" y2="12"/><polyline points="12 19 5 12 12 5"/></svg>
                 Kembali ke Beranda
             </a>
 

@@ -3,47 +3,51 @@
    ========================================================================== */
 
 /* Import Premium Google Fonts */
-@import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Outfit:wght@400;500;600;700;800&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Poppins:wght@400;500;600;700;800&display=swap');
 
 :root {
-    /* Harmony Palette (HSL tailored) */
-    --bg-dark: hsl(222, 47%, 9%);
-    --bg-surface: hsla(223, 47%, 15%, 0.7);
-    --bg-card: hsla(223, 47%, 15%, 0.85);
-    --border-glass: hsla(223, 47%, 25%, 0.35);
-    --border-hover: hsla(174, 100%, 41%, 0.3);
+    /* Harmony Palette (Approved Colors) */
+    --primary-dark-blue: #073B4C;
+    --primary-blue: #118AB2;
+    --primary-green: #06D6A0;
+    --primary-yellow: #FFD166;
+    --primary-cream: #FCF6BD;
     
-    /* Accents */
-    --accent-teal: hsl(174, 100%, 41%);
-    --accent-blue: hsl(210, 100%, 50%);
-    --accent-indigo: hsl(250, 100%, 65%);
+    /* Layout & Surfaces (Light Theme) */
+    --bg-light: #F8F9FA;
+    --bg-surface: #FFFFFF;
+    --bg-card: #FFFFFF;
+    --border-color: #E9ECEF;
+    --border-hover: #118AB2;
+    --border-thick: 2px solid #073B4C;
     
-    /* Status Colors (Curated HSL) */
-    --status-awas: hsl(354, 76%, 53%);     /* Crimson Alert */
-    --status-siaga: hsl(24, 95%, 53%);      /* Vibrant Orange */
-    --status-waspada: hsl(45, 95%, 50%);    /* Sun Gold */
-    --status-aman: hsl(142, 70%, 45%);      /* Emerald Green */
+    /* Status Colors */
+    --status-awas: #EF476F;      /* Crimson Alert */
+    --status-siaga: #F77F00;     /* Vibrant Orange */
+    --status-waspada: #FFD166;   /* Sun Gold */
+    --status-aman: #06D6A0;      /* Emerald Green */
     
     /* Status Light Transparents for Badges */
-    --status-awas-bg: hsla(354, 76%, 53%, 0.15);
-    --status-siaga-bg: hsla(24, 95%, 53%, 0.15);
-    --status-waspada-bg: hsla(45, 95%, 50%, 0.15);
-    --status-aman-bg: hsla(142, 70%, 45%, 0.15);
+    --status-awas-bg: rgba(239, 71, 111, 0.12);
+    --status-siaga-bg: rgba(247, 127, 0, 0.12);
+    --status-waspada-bg: rgba(255, 209, 102, 0.15);
+    --status-aman-bg: rgba(6, 214, 160, 0.12);
 
     /* Text Colors */
-    --text-primary: hsl(210, 40%, 98%);
-    --text-secondary: hsl(215, 20%, 75%);
-    --text-muted: hsl(217, 13%, 55%);
-    --text-dark: hsl(222, 47%, 11%);
+    --text-primary: #073B4C;     /* Dark blue text for premium visual contrast */
+    --text-secondary: #4A5568;
+    --text-muted: #718096;
+    --text-light: #FFFFFF;
+    --text-dark: #073B4C;
     
     /* Glows & Shadows */
-    --glow-teal: 0 0 15px hsla(174, 100%, 41%, 0.4);
-    --glow-awas: 0 0 15px hsla(354, 76%, 53%, 0.4);
-    --shadow-premium: 0 8px 32px 0 rgba(0, 0, 0, 0.37);
-    --shadow-inset: inset 0 2px 4px 0 rgba(255, 255, 255, 0.05);
+    --glow-blue: 0 4px 14px rgba(17, 138, 178, 0.4);
+    --shadow-premium: 0 10px 30px -5px rgba(7, 59, 76, 0.08), 0 0 1px 1px rgba(7, 59, 76, 0.04);
+    --shadow-flat: 4px 4px 0px 0px #073B4C;
+    --shadow-flat-hover: 6px 6px 0px 0px #073B4C;
     
     /* Transition Speed */
-    --transition-smooth: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+    --transition-smooth: all 0.25s cubic-bezier(0.4, 0, 0.2, 1);
 }
 
 /* Base Reset & Styles */
@@ -55,15 +59,15 @@
 }
 
 body {
-    background-color: var(--bg-dark);
-    color: var(--text-primary);
+    background-color: var(--bg-light);
+    color: var(--text-secondary);
     min-height: 100vh;
     overflow-x: hidden;
     line-height: 1.6;
 }
 
 h1, h2, h3, h4, h5, h6 {
-    font-family: 'Outfit', sans-serif;
+    font-family: 'Poppins', sans-serif;
     color: var(--text-primary);
     font-weight: 700;
 }
@@ -74,59 +78,77 @@ a {
     transition: var(--transition-smooth);
 }
 
-/* Glassmorphism General Style */
+/* Modern Flat Card Style (Replaces dark glass-panel) */
 .glass-panel {
     background: var(--bg-card);
-    backdrop-filter: blur(16px);
-    -webkit-backdrop-filter: blur(16px);
-    border: 1px solid var(--border-glass);
-    box-shadow: var(--shadow-premium), var(--shadow-inset);
+    border: 2px solid var(--primary-dark-blue);
+    box-shadow: var(--shadow-flat);
     border-radius: 16px;
     transition: var(--transition-smooth);
 }
 
+.glass-panel:hover {
+    box-shadow: var(--shadow-flat-hover);
+    transform: translate(-2px, -2px);
+}
+
+/* Elegant Standard Card Style */
+.card-clean {
+    background: var(--bg-card);
+    border: 1px solid var(--border-color);
+    box-shadow: var(--shadow-premium);
+    border-radius: 16px;
+    transition: var(--transition-smooth);
+}
+
+.card-clean:hover {
+    transform: translateY(-4px);
+    box-shadow: 0 15px 35px -5px rgba(7, 59, 76, 0.12);
+}
+
 /* Buttons */
 .btn-primary {
-    background: linear-gradient(135deg, var(--accent-teal), hsl(174, 100%, 30%));
-    color: var(--text-dark);
+    background: var(--primary-blue);
+    color: var(--text-light);
     font-weight: 600;
     padding: 0.8rem 1.8rem;
     border-radius: 50px;
-    border: none;
+    border: 2px solid var(--primary-dark-blue);
     cursor: pointer;
-    font-family: 'Outfit', sans-serif;
+    font-family: 'Poppins', sans-serif;
     transition: var(--transition-smooth);
     display: inline-flex;
     align-items: center;
     gap: 0.5rem;
-    box-shadow: var(--glow-teal);
+    box-shadow: var(--shadow-flat);
 }
 
 .btn-primary:hover {
-    transform: translateY(-2px);
-    box-shadow: 0 0 25px hsla(174, 100%, 41%, 0.6);
-    filter: brightness(1.1);
+    transform: translate(-2px, -2px);
+    box-shadow: var(--shadow-flat-hover);
+    background: #0e7293;
 }
 
 .btn-secondary {
-    background: transparent;
+    background: var(--primary-cream);
     color: var(--text-primary);
-    border: 1px solid var(--border-glass);
+    border: 2px solid var(--primary-dark-blue);
     padding: 0.8rem 1.8rem;
     border-radius: 50px;
     font-weight: 600;
     cursor: pointer;
-    font-family: 'Outfit', sans-serif;
+    font-family: 'Poppins', sans-serif;
     transition: var(--transition-smooth);
     display: inline-flex;
     align-items: center;
     gap: 0.5rem;
+    box-shadow: var(--shadow-flat);
 }
 
 .btn-secondary:hover {
-    background: hsla(223, 47%, 20%, 0.5);
-    border-color: var(--accent-teal);
-    transform: translateY(-2px);
+    background: #faef95;
+    transform: translate(-2px, -2px);
+    box-shadow: var(--shadow-flat-hover);
 }
 
 /* Status Badges */
@@ -137,46 +159,44 @@ a {
     padding: 0.35rem 0.8rem;
     border-radius: 50px;
     font-size: 0.8rem;
-    font-weight: 600;
+    font-weight: 700;
     text-transform: uppercase;
     letter-spacing: 0.05em;
+    border: 2px solid var(--primary-dark-blue);
 }
 
 .badge-status::before {
     content: '';
     display: inline-block;
-    width: 6px;
-    height: 6px;
+    width: 8px;
+    height: 8px;
     border-radius: 50%;
+    border: 1px solid var(--primary-dark-blue);
 }
 
 .badge-awas {
     background-color: var(--status-awas-bg);
-    color: var(--status-awas);
-    border: 1px solid hsla(354, 76%, 53%, 0.3);
+    color: #C53030;
 }
-.badge-awas::before { background-color: var(--status-awas); box-shadow: 0 0 8px var(--status-awas); }
+.badge-awas::before { background-color: var(--status-awas); }
 
 .badge-siaga {
     background-color: var(--status-siaga-bg);
-    color: var(--status-siaga);
-    border: 1px solid hsla(24, 95%, 53%, 0.3);
+    color: #DD6B20;
 }
-.badge-siaga::before { background-color: var(--status-siaga); box-shadow: 0 0 8px var(--status-siaga); }
+.badge-siaga::before { background-color: var(--status-siaga); }
 
 .badge-waspada {
     background-color: var(--status-waspada-bg);
-    color: var(--status-waspada);
-    border: 1px solid hsla(45, 95%, 50%, 0.3);
+    color: #B7791F;
 }
-.badge-waspada::before { background-color: var(--status-waspada); box-shadow: 0 0 8px var(--status-waspada); }
+.badge-waspada::before { background-color: var(--status-waspada); }
 
 .badge-aman {
     background-color: var(--status-aman-bg);
-    color: var(--status-aman);
-    border: 1px solid hsla(142, 70%, 45%, 0.3);
+    color: #22543D;
 }
-.badge-aman::before { background-color: var(--status-aman); box-shadow: 0 0 8px var(--status-aman); }
+.badge-aman::before { background-color: var(--status-aman); }
 
 /* Custom Scrollbar */
 ::-webkit-scrollbar {
@@ -185,30 +205,30 @@ a {
 }
 
 ::-webkit-scrollbar-track {
-    background: var(--bg-dark);
+    background: var(--bg-light);
 }
 
 ::-webkit-scrollbar-thumb {
-    background: var(--border-glass);
+    background: #CBD5E0;
     border-radius: 4px;
 }
 
 ::-webkit-scrollbar-thumb:hover {
-    background: var(--accent-teal);
+    background: var(--primary-blue);
 }
 
 /* Animations */
 @keyframes pulse {
     0% {
         transform: scale(0.95);
-        box-shadow: 0 0 0 0 rgba(174, 100, 41, 0.4);
+        box-shadow: 0 0 0 0 rgba(17, 138, 178, 0.5);
     }
     70% {
         transform: scale(1);
-        box-shadow: 0 0 0 10px rgba(174, 100, 41, 0);
+        box-shadow: 0 0 0 10px rgba(17, 138, 178, 0);
     }
     100% {
         transform: scale(0.95);
-        box-shadow: 0 0 0 0 rgba(174, 100, 41, 0);
+        box-shadow: 0 0 0 0 rgba(17, 138, 178, 0);
     }
 }

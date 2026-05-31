@@ -10,7 +10,7 @@
     <!-- Navbar -->
     <nav class="nav-container">
         <a href="{{ route('landing') }}" class="brand">
-            <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" style="color: var(--accent-teal);"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/></svg>
+            <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" style="color: var(--primary-blue);"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/></svg>
             <span>FloodWatch<span class="brand-dot">.</span></span>
         </a>
         <ul class="nav-links">
@@ -32,8 +32,8 @@
                 <span>Lampung Status Siaga: {{ $totalActiveFloods }} Titik Terdeteksi</span>
             </div>
         @else
-            <div class="hero-tag" style="background: var(--status-aman-bg); color: var(--status-aman); border-color: hsla(142, 70%, 45%, 0.25);">
-                <span class="hero-tag-dot" style="background-color: var(--status-aman); animation: none;"></span>
+            <div class="hero-tag" style="background: var(--status-aman-bg); color: var(--status-aman); border-color: var(--primary-dark-blue);">
+                <span class="hero-tag-dot" style="background-color: var(--status-aman); animation: none; border: 1px solid var(--primary-dark-blue);"></span>
                 <span>Lampung Kondisi Aman Kondusif</span>
             </div>
         @endif
@@ -60,7 +60,7 @@
         <div class="stats-grid">
             <div class="stat-card glass-panel">
                 <div class="stat-icon">
-                    <svg xmlns="http://www.w3.org/2000/svg" width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 2v20M17 5H9.5a3.5 3.5 0 0 0 0 7h5a3.5 3.5 0 0 1 0 7H6"/></svg>
+                    <svg xmlns="http://www.w3.org/2000/svg" width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M12 2v20M17 5H9.5a3.5 3.5 0 0 0 0 7h5a3.5 3.5 0 0 1 0 7H6"/></svg>
                 </div>
                 <div class="stat-number">{{ $totalActiveFloods }}</div>
                 <div class="stat-label">Titik Banjir Aktif</div>
@@ -68,10 +68,10 @@
             </div>
             
             <div class="stat-card glass-panel">
-                <div class="stat-icon" style="color: var(--accent-blue);">
-                    <svg xmlns="http://www.w3.org/2000/svg" width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"/><circle cx="9" cy="7" r="4"/><path d="M23 21v-2a4 4 0 0 0-3-3.87"/><path d="M16 3.13a4 4 0 0 1 0 7.75"/></svg>
+                <div class="stat-icon" style="color: var(--primary-blue);">
+                    <svg xmlns="http://www.w3.org/2000/svg" width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"/><circle cx="9" cy="7" r="4"/><path d="M23 21v-2a4 4 0 0 0-3-3.87"/><path d="M16 3.13a4 4 0 0 1 0 7.75"/></svg>
                 </div>
-                <div class="stat-number" style="background: linear-gradient(135deg, var(--text-primary), var(--accent-blue)); -webkit-background-clip: text;">
+                <div class="stat-number" style="color: var(--primary-blue);">
                     {{ number_format($totalAffectedPopulation) }}
                 </div>
                 <div class="stat-label">Estimasi Terdampak</div>
@@ -80,9 +80,9 @@
 
             <div class="stat-card glass-panel">
                 <div class="stat-icon" style="color: var(--status-awas);">
-                    <svg xmlns="http://www.w3.org/2000/svg" width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z"/><circle cx="12" cy="10" r="3"/></svg>
+                    <svg xmlns="http://www.w3.org/2000/svg" width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z"/><circle cx="12" cy="10" r="3"/></svg>
                 </div>
-                <div class="stat-number" style="font-size: 1.6rem; line-height: 2.8rem; background: linear-gradient(135deg, var(--text-primary), var(--status-awas)); -webkit-background-clip: text;">
+                <div class="stat-number" style="font-size: 1.6rem; line-height: 2.8rem; color: #EF476F;">
                     {{ $mostAffectedRegion ? $mostAffectedRegion->name : 'N/A' }}
                 </div>
                 <div class="stat-label">Dampak Tertinggi</div>
@@ -96,7 +96,7 @@
         <div class="section-header">
             <div class="section-info">
                 <span class="section-subtitle">Wilayah Prioritas</span>
-                <h2 class="section-title">4 Wilayah Fokus Monitoring</h2>
+                <h2 class="section-title">{{ count($regions) }} Wilayah Fokus Monitoring</h2>
             </div>
             <p style="color: var(--text-secondary); max-width: 450px;">Berdasarkan rekam historis cuaca ekstrem, daerah-daerah ini menjadi fokus integrasi spasial data kebencanaan di Lampung.</p>
         </div>
@@ -172,8 +172,8 @@
     <footer>
         <div class="footer-content">
             <div class="brand">
-                <svg xmlns="http://www.w3.org/2000/svg" width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" style="color: var(--accent-teal);"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/></svg>
-                <span>FloodWatch<span class="brand-dot">.</span></span>
+                <svg xmlns="http://www.w3.org/2000/svg" width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" style="color: var(--primary-yellow);"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/></svg>
+                <span>FloodWatch<span>.</span></span>
             </div>
             <p class="footer-text">Sistem Informasi Geografis (SIG) Pemetaan Banjir Lampung terintegrasi, memberikan transparansi informasi bencana guna meningkatkan mitigasi dan keamanan sipil.</p>
             <p class="footer-copyright">&copy; {{ date('Y') }} FloodWatch Lampung. Hak Cipta Dilindungi.</p>

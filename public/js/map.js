@@ -23,11 +23,10 @@ document.addEventListener('DOMContentLoaded', function () {
             minZoom: 8
         }).setView(initialCenter, initialZoom);
 
-        // CartoDB Dark Matter Tiles (High-end Cyberpunk GIS look)
-        L.tileLayer('https://{s}.basemaps.cartocdn.com/dark_all/{z}/{x}/{y}{r}.png', {
-            attribution: '&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> &copy; <a href="https://carto.com/attributions">CartoDB</a>',
-            subdomains: 'abcd',
-            maxZoom: 20
+        // Standard OpenStreetMap Tiles (Premium light theme map style)
+        L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
+            attribution: '&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors',
+            maxZoom: 19
         }).addTo(map);
 
         markersLayer.addTo(map);
@@ -77,7 +76,7 @@ document.addEventListener('DOMContentLoaded', function () {
                 <div class="popup-detail-grid">
                     <div class="popup-detail-item">
                         <span class="popup-detail-label">Tinggi Air</span>
-                        <span class="popup-detail-val" style="color: var(--accent-blue); font-size: 0.95rem;">${incident.water_level} cm</span>
+                        <span class="popup-detail-val" style="color: var(--primary-blue); font-size: 0.95rem; font-weight: 700;">${incident.water_level} cm</span>
                     </div>
                     <div class="popup-detail-item">
                         <span class="popup-detail-label">Cuaca</span>
@@ -91,7 +90,7 @@ document.addEventListener('DOMContentLoaded', function () {
 
                 <p class="popup-desc">${incident.description || 'Tidak ada uraian detail kejadian.'}</p>
                 
-                <div style="font-size: 0.72rem; color: var(--text-muted); margin-top: 0.6rem; border-top: 1px solid var(--border-glass); padding-top: 0.4rem; display: flex; align-items: center; justify-content: space-between;">
+                <div style="font-size: 0.72rem; color: var(--text-muted); margin-top: 0.6rem; border-top: 2px solid var(--primary-dark-blue); padding-top: 0.4rem; display: flex; align-items: center; justify-content: space-between; font-weight: 600;">
                     <span>Dilaporkan:</span>
                     <span>${dateFormatted}</span>
                 </div>
@@ -175,7 +174,7 @@ document.addEventListener('DOMContentLoaded', function () {
 
         if (incidents.length === 0) {
             listEl.innerHTML = `
-                <div style="padding: 2rem; text-align: center; color: var(--text-muted); font-size: 0.9rem;">
+                <div style="padding: 2rem; text-align: center; color: var(--primary-dark-blue); font-weight: 600; font-size: 0.9rem;">
                     Tidak ditemukan data banjir yang cocok dengan filter pencarian.
                 </div>
             `;
@@ -184,7 +183,7 @@ document.addEventListener('DOMContentLoaded', function () {
 
         incidents.forEach(inc => {
             const card = document.createElement('div');
-            card.className = 'incident-item-card glass-panel';
+            card.className = 'incident-item-card';
             card.innerHTML = `
                 <div class="incident-card-header">
                     <span class="incident-card-name">${inc.location_name}</span>
@@ -192,9 +191,9 @@ document.addEventListener('DOMContentLoaded', function () {
                 </div>
                 <div class="incident-card-meta">
                     <span class="incident-card-region">${inc.region.name}</span>
-                    <span style="color: var(--accent-blue); font-weight: 600;">${inc.water_level} cm</span>
+                    <span style="color: var(--primary-blue); font-weight: 700;">${inc.water_level} cm</span>
                 </div>
-                <div style="font-size: 0.8rem; color: var(--text-secondary); margin-top: 0.5rem; text-overflow: ellipsis; overflow: hidden; white-space: nowrap;">
+                <div style="font-size: 0.8rem; color: var(--text-secondary); margin-top: 0.5rem; text-overflow: ellipsis; overflow: hidden; white-space: nowrap; font-weight: 500;">
                     ${inc.description || 'Tidak ada detail.'}
                 </div>
             `;
@@ -236,19 +235,19 @@ document.addEventListener('DOMContentLoaded', function () {
                     fetch(layer.url)
                         .then(geojsonRes => geojsonRes.json())
                         .then(geojsonData => {
-                            // Standard Polygon Styling for Lampungs admin boundaries
+                            // Standard Polygon Styling for Lampungs admin boundaries (Sleek primary-blue theme)
                             const layerPolygon = L.geoJSON(geojsonData, {
                                 style: {
-                                    color: 'hsl(174, 100%, 41%)', // Neon Teal
-                                    weight: 1.5,
-                                    fillColor: 'hsl(174, 100%, 41%)',
-                                    fillOpacity: 0.06,
-                                    dashArray: '4, 4'
+                                    color: '#118AB2', // Primary Blue
+                                    weight: 2,
+                                    fillColor: '#118AB2',
+                                    fillOpacity: 0.08,
+                                    dashArray: '5, 5'
                                 }
                             }).addTo(map);
 
                             // Bind standard popup showing boundary name
-                            layerPolygon.bindPopup(`<strong style="font-family: 'Outfit'; font-size: 1rem; color: var(--text-primary);">${layer.name}</strong><br><span style="font-size: 0.85rem; color: var(--text-muted)">Batas Wilayah SIG GeoJSON</span>`);
+                            layerPolygon.bindPopup(`<strong style="font-family: 'Poppins', sans-serif; font-size: 1rem; color: var(--primary-dark-blue);">${layer.name}</strong><br><span style="font-size: 0.85rem; color: var(--text-muted); font-weight: 500;">Batas Wilayah SIG GeoJSON</span>`);
                             
                             geojsonLayers.push(layerPolygon);
                         })
