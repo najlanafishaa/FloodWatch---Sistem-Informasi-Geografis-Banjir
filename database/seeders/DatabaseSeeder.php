@@ -20,6 +20,7 @@ class DatabaseSeeder extends Seeder
             'name' => 'Admin FloodWatch',
             'email' => 'admin@floodwatch.id',
             'password' => Hash::make('admin123'),
+            'role' => 'admin',
         ]);
 
         // 2. Create All 15 Regions of Lampung Province

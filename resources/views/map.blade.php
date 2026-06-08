@@ -33,7 +33,14 @@
                 </button>
             </div>
             
-            <div class="sidebar-scrollable-content">
+            <!-- Tab Navigation -->
+            <div class="sidebar-tabs">
+                <button class="tab-btn active" data-tab="realtime">Banjir Aktif</button>
+                <button class="tab-btn" data-tab="kaggle">Analisis Kaggle</button>
+            </div>
+
+            <!-- Tab 1: Real-time Content -->
+            <div class="sidebar-scrollable-content" id="tab-realtime-content">
                 <!-- Search Filter -->
                 <div>
                     <label class="filter-group-title">Cari Lokasi</label>
@@ -78,6 +85,48 @@
                     </div>
                 </div>
             </div>
+
+            <!-- Tab 2: Kaggle Dataset Content -->
+            <div class="sidebar-scrollable-content d-none" id="tab-kaggle-content">
+                <!-- Layers Control Section -->
+                <div>
+                    <label class="filter-group-title">Lapisan Peta (Layers)</label>
+                    <div class="layers-container">
+                        <label class="layer-item">
+                            <input type="checkbox" id="layer-geojson-checkbox" checked>
+                            <span class="layer-label">Batas Administrasi (GeoJSON)</span>
+                        </label>
+                        <label class="layer-item">
+                            <input type="checkbox" id="layer-realtime-checkbox" checked>
+                            <span class="layer-label">Titik Banjir Real-Time</span>
+                        </label>
+                        <label class="layer-item">
+                            <input type="checkbox" id="layer-bps-geojson-checkbox" checked>
+                            <span class="layer-label">Batas Administrasi BPS (GeoJSON)</span>
+                        </label>
+                    </div>
+                </div>
+
+                <!-- Kaggle Weather & Flood Correlation Statistics -->
+                <div>
+                    <div class="results-info-container">
+                        <label class="filter-group-title" style="margin-bottom: 0;">Korelasi Variabel Cuaca</label>
+                        <span class="results-count">Dataset Lampung</span>
+                    </div>
+                    
+                    <div class="kaggle-stats-grid" id="kaggle-stats-grid">
+                        <div class="stat-loading">Memuat analisis cuaca...</div>
+                    </div>
+                </div>
+
+                <!-- Recent Weather Datasets List -->
+                <div>
+                    <label class="filter-group-title" style="margin-bottom: 0.8rem;">Data Cuaca Historis</label>
+                    <div class="historical-records-list" id="historical-records-list">
+                        <!-- Loaded dynamically via AJAX -->
+                    </div>
+                </div>
+            </div>
         </aside>
 
         <!-- Map Canvas Container -->
@@ -94,8 +143,11 @@
         window.floodWatchConfig = {
             apiFloodsUrl: "{{ route('api.floods') }}",
             apiGeojsonUrl: "{{ route('api.geojson') }}",
+            apiBpsGeojsonUrl: "{{ route('api.bps-geojson') }}",
+            apiDatasetExistsUrl: "{{ route('api.dataset-exists') }}",
             defaultRegionId: "{{ request('region_id', '') }}"
         };
     </script>
     <script src="{{ asset('js/map.js') }}"></script>
+    <script src="{{ asset('js/kaggle-analysis.js') }}"></script>
 @endsection

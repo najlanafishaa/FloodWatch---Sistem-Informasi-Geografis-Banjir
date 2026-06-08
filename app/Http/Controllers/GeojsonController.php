@@ -24,10 +24,12 @@ class GeojsonController extends Controller
     {
         $request->validate([
             'name' => 'required|string|max:255',
-            'geojson_file' => 'required|file|mimetypes:application/json,text/plain|max:10240', // Max 10MB
+            // Accept .geojson and .json files via extension and common mime types
+            'geojson_file' => 'required|file|mimes:geojson,json|mimetypes:application/json,application/geo+json,text/plain|max:10240', // Max 10MB
         ], [
             'geojson_file.required' => 'Berkas GeoJSON wajib diunggah.',
-            'geojson_file.mimetypes' => 'Format file harus berupa berkas JSON/GeoJSON yang valid.',
+            'geojson_file.mimes' => 'Format berkas harus .geojson atau .json.',
+            'geojson_file.mimetypes' => 'Format berkas harus berupa format GeoJSON/JSON yang valid.',
             'geojson_file.max' => 'Ukuran berkas tidak boleh melebihi 10MB.',
         ]);
 

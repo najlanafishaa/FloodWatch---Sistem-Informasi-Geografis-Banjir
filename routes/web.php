@@ -12,6 +12,10 @@ Route::get('/', [PublicController::class, 'landing'])->name('landing');
 Route::get('/map', [PublicController::class, 'map'])->name('map');
 Route::get('/api/floods', [PublicController::class, 'apiFloods'])->name('api.floods');
 Route::get('/api/geojson', [PublicController::class, 'apiGeojson'])->name('api.geojson');
+Route::get('/api/dataset-stats', [PublicController::class, 'apiDatasetStats'])->name('api.dataset-stats');
+Route::get('/api/dataset-exists', [PublicController::class, 'apiDatasetExists'])->name('api.dataset-exists');
+Route::get('/api/bps-geojson', [PublicController::class, 'apiBpsGeojson'])->name('api.bps-geojson');
+
 
 // Admin Auth Routes
 Route::get('/login', [AuthController::class, 'showLogin'])->name('login');
@@ -19,7 +23,7 @@ Route::post('/login', [AuthController::class, 'login'])->name('login.post');
 Route::post('/logout', [AuthController::class, 'logout'])->name('logout');
 
 // Protected Admin Routes
-Route::middleware(['auth'])->prefix('admin')->name('admin.')->group(function () {
+Route::middleware(['auth', 'admin'])->prefix('admin')->name('admin.')->group(function () {
     Route::get('/', [AdminController::class, 'index'])->name('dashboard');
     
     // Flood CRUD
