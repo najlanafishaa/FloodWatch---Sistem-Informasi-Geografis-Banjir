@@ -452,3 +452,178 @@
         display: inline-flex;
     }
 }
+
+/* ==========================================================================
+   New Styles: Sidebar Tabs & Kaggle Dataset Visuals
+   ========================================================================== */
+.sidebar-tabs {
+    display: flex;
+    border-bottom: 2px solid var(--primary-dark-blue);
+    background-color: var(--primary-cream);
+}
+
+.tab-btn {
+    flex: 1;
+    border: none;
+    background: none;
+    padding: 0.8rem 1rem;
+    font-family: 'Poppins', sans-serif;
+    font-size: 0.88rem;
+    font-weight: 700;
+    color: var(--text-muted);
+    cursor: pointer;
+    transition: var(--transition-smooth);
+    border-bottom: 3px solid transparent;
+}
+
+.tab-btn:hover {
+    color: var(--primary-blue);
+    background-color: rgba(17, 138, 178, 0.05);
+}
+
+.tab-btn.active {
+    color: var(--primary-blue);
+    border-bottom-color: var(--primary-blue);
+    background-color: #FFFFFF;
+}
+
+.d-none {
+    display: none !important;
+}
+
+/* Layers Toggle */
+.layers-container {
+    display: flex;
+    flex-direction: column;
+    gap: 0.8rem;
+    padding: 1rem;
+    background-color: var(--primary-cream);
+    border: 2px solid var(--primary-dark-blue);
+    border-radius: 12px;
+    box-shadow: var(--shadow-flat);
+}
+
+.layer-item {
+    display: flex;
+    align-items: center;
+    gap: 0.8rem;
+    cursor: pointer;
+    font-weight: 600;
+    font-size: 0.88rem;
+    color: var(--primary-dark-blue);
+}
+
+.layer-item input[type="checkbox"] {
+    width: 18px;
+    height: 18px;
+    accent-color: var(--primary-blue);
+    cursor: pointer;
+}
+
+/* Stats Cards */
+.kaggle-stats-grid {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 0.8rem;
+    margin-top: 0.5rem;
+}
+
+.stat-loading {
+    padding: 1.5rem;
+    text-align: center;
+    font-weight: 600;
+    color: var(--text-muted);
+}
+
+.stat-card-wide {
+    grid-column: span 2;
+    background: #FFFFFF;
+    border: 2px solid var(--primary-dark-blue);
+    border-radius: 12px;
+    padding: 0.9rem 1.1rem;
+    box-shadow: var(--shadow-flat);
+}
+
+.stat-card {
+    background: #FFFFFF;
+    border: 2px solid var(--primary-dark-blue);
+    border-radius: 12px;
+    padding: 0.9rem 1.1rem;
+    box-shadow: var(--shadow-flat);
+}
+
+.stat-card-title {
+    font-size: 0.72rem;
+    font-weight: 750;
+    color: var(--text-muted);
+    text-transform: uppercase;
+    letter-spacing: 0.05em;
+    display: block;
+    margin-bottom: 0.3rem;
+}
+
+.stat-card-val {
+    font-family: 'Poppins', sans-serif;
+    font-size: 1.3rem;
+    font-weight: 800;
+    color: var(--primary-dark-blue);
+    display: block;
+}
+
+.stat-card-sub {
+    font-size: 0.72rem;
+    color: var(--text-secondary);
+    font-weight: 600;
+}
+
+/* Historical Records List */
+.historical-records-list {
+    display: flex;
+    flex-direction: column;
+    gap: 0.8rem;
+    max-height: 350px;
+    overflow-y: auto;
+    padding-right: 0.2rem;
+}
+
+.historical-item-card {
+    padding: 0.9rem 1.1rem;
+    border-radius: 12px;
+    border: 2px solid var(--primary-dark-blue);
+    background: #FFFFFF;
+    box-shadow: var(--shadow-flat);
+    display: flex;
+    flex-direction: column;
+    gap: 0.4rem;
+}
+
+.hist-card-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    font-weight: 700;
+    font-size: 0.88rem;
+    color: var(--primary-dark-blue);
+}
+
+.hist-card-date {
+    font-family: 'Poppins', sans-serif;
+}
+
+.hist-card-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 0.5rem;
+    font-size: 0.75rem;
+    font-weight: 600;
+    color: var(--text-muted);
+    border-top: 1px dashed var(--primary-dark-blue);
+    padding-top: 0.4rem;
+}
+
+.hist-card-grid-item span {
+    display: block;
+    color: var(--primary-dark-blue);
+    font-weight: 700;
+}
+

@@ -36,6 +36,9 @@ document.addEventListener('DOMContentLoaded', function () {
 
         // Initial Data Fetch
         fetchFloodIncidents();
+
+        // Initialize layer visibility based on checkboxes
+        initLayerToggles();
     }
 
     // 3. Generate Custom Pulsating DivIcon based on flood status

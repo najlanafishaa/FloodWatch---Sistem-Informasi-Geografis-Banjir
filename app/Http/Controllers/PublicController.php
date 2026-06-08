@@ -100,4 +100,60 @@ class PublicController extends Controller
 
         return response()->json($layers);
     }
+
+    /**
+     * API to fetch historical weather-flood statistics from the Kaggle dataset.
+     */
+    public function apiDatasetStats()
+    {
+        $totalRecords = \App\Models\WeatherFloodRecord::count();
+        $floodDays = \App\Models\WeatherFloodRecord::where('flood_occurred', true)->count();
+        $normalDays = $totalRecords - $floodDays;
+
+        $avgRainfallFlood = \App\Models\WeatherFloodRecord::where('flood_occurred', true)->avg('rainfall') ?? 0;
+        $avgRainfallNormal = \App\Models\WeatherFloodRecord::where('flood_occurred', false)->avg('rainfall') ?? 0;
+
+        $avgRainfallOneWeekFlood = \App\Models\WeatherFloodRecord::where('flood_occurred', true)->avg('rainfall_one_week') ?? 0;
+        $avgRainfallOneWeekNormal = \App\Models\WeatherFloodRecord::where('flood_occurred', false)->avg('rainfall_one_week') ?? 0;
+
+        $avgTempFlood = \App\Models\WeatherFloodRecord::where('flood_occurred', true)->avg('avg_temperature') ?? 0;
+        $avgTempNormal = \App\Models\WeatherFloodRecord::where('flood_occurred', false)->avg('avg_temperature') ?? 0;
+
+        $avgHumidityFlood = \App\Models\WeatherFloodRecord::where('flood_occurred', true)->avg('avg_humidity') ?? 0;
+        $avgHumidityNormal = \App\Models\WeatherFloodRecord::where('flood_occurred', false)->avg('avg_humidity') ?? 0;
+
+        // Group by monsoon wind
+        $monsoonWindFlood = \App\Models\WeatherFloodRecord::where('flood_occurred', true)
+            ->selectRaw('monsoon_wind, count(*) as count')
+            ->groupBy('monsoon_wind')
+            ->get();
+
+        // Get latest 10 historical records
+        $recentRecords = \App\Models\WeatherFloodRecord::orderBy('date', 'desc')->take(10)->get();
+
+        return response()->json([
+            'total_records' => $totalRecords,
+            'flood_days' => $floodDays,
+            'normal_days' => $normalDays,
+            'avg_rainfall_flood' => round($avgRainfallFlood, 2),
+            'avg_rainfall_normal' => round($avgRainfallNormal, 2),
+            'avg_rainfall_1week_flood' => round($avgRainfallOneWeekFlood, 2),
+            'avg_rainfall_1week_normal' => round($avgRainfallOneWeekNormal, 2),
+            'avg_temp_flood' => round($avgTempFlood, 2),
+            'avg_temp_normal' => round($avgTempNormal, 2),
+            'avg_humidity_flood' => round($avgHumidityFlood, 2),
+            'avg_humidity_normal' => round($avgHumidityNormal, 2),
+            'monsoon_wind_flood' => $monsoonWindFlood,
+            'recent_records' => $recentRecords
+        ]);
+    }
+
+    /**
+     * Check whether the Kaggle dataset file exists on the server.
+     */
+    public function apiDatasetExists()
+    {
+        $path = base_path('C:/Users/ACER/.cache/kagglehub/datasets/ramadhannurpambudi/dataset-kejadian-banjir-dan-variabel-pendukung/versions/1/Dataset banjir.xlsx');
+        return response()->json(['exists' => file_exists($path)]);
+    }
 }
