@@ -3,6 +3,8 @@
 @section('title', 'Peta Interaktif Banjir Lampung — FloodWatch')
 
 @section('styles')
+    {{-- Leaflet CSS - only loaded on map page --}}
+    <link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css" integrity="sha256-p4NxAoJBhIIN+hmNHrzRCf9tD/miZyoHS5obTRR9BMY=" crossorigin=""/>
     <link rel="stylesheet" href="{{ asset('css/map.css') }}">
 @endsection
 
@@ -94,15 +96,23 @@
                     <div class="layers-container">
                         <label class="layer-item">
                             <input type="checkbox" id="layer-geojson-checkbox" checked>
+                            <span class="layer-dot" style="background: var(--primary-blue);"></span>
                             <span class="layer-label">Batas Administrasi (GeoJSON)</span>
                         </label>
                         <label class="layer-item">
                             <input type="checkbox" id="layer-realtime-checkbox" checked>
+                            <span class="layer-dot" style="background: var(--status-awas);"></span>
                             <span class="layer-label">Titik Banjir Real-Time</span>
                         </label>
                         <label class="layer-item">
                             <input type="checkbox" id="layer-bps-geojson-checkbox" checked>
+                            <span class="layer-dot" style="background: var(--primary-green);"></span>
                             <span class="layer-label">Batas Administrasi BPS (GeoJSON)</span>
+                        </label>
+                        <label class="layer-item">
+                            <input type="checkbox" id="layer-esri-checkbox">
+                            <span class="layer-dot" style="background: var(--primary-yellow);"></span>
+                            <span class="layer-label">Esri Satellite Basemap</span>
                         </label>
                     </div>
                 </div>
@@ -111,11 +121,11 @@
                 <div>
                     <div class="results-info-container">
                         <label class="filter-group-title" style="margin-bottom: 0;">Korelasi Variabel Cuaca</label>
-                        <span class="results-count">Dataset Lampung</span>
+                        <span class="results-count" id="kaggle-dataset-status">Dataset Lampung</span>
                     </div>
                     
                     <div class="kaggle-stats-grid" id="kaggle-stats-grid">
-                        <div class="stat-loading">Memuat analisis cuaca...</div>
+                        <div class="stat-loading">Klik tab ini untuk memuat analisis cuaca...</div>
                     </div>
                 </div>
 
@@ -138,6 +148,9 @@
 @endsection
 
 @section('scripts')
+    {{-- Leaflet JS - only loaded on map page --}}
+    <script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js" integrity="sha256-20nQCchB9co0qIjJZRGuk2/Z9VM+kNiyxNV1lvTlZBo=" crossorigin=""></script>
+
     <!-- Pass Laravel Asset Helper Paths to JS -->
     <script>
         window.floodWatchConfig = {
@@ -145,6 +158,7 @@
             apiGeojsonUrl: "{{ route('api.geojson') }}",
             apiBpsGeojsonUrl: "{{ route('api.bps-geojson') }}",
             apiDatasetExistsUrl: "{{ route('api.dataset-exists') }}",
+            apiDatasetStatsUrl: "{{ route('api.dataset-stats') }}",
             defaultRegionId: "{{ request('region_id', '') }}"
         };
     </script>

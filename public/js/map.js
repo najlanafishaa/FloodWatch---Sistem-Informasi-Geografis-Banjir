@@ -8,7 +8,9 @@ document.addEventListener('DOMContentLoaded', function () {
     const config = window.floodWatchConfig;
     let map = null;
     let markersLayer = L.layerGroup();
-    let geojsonLayers = [];
+    let geojsonLayers = [];    // Admin-uploaded GeoJSON layers
+    let bpsGeojsonLayers = []; // BPS administrative boundary layers
+    let esriSatelliteLayer = null;
     let activeMarkers = {}; // Keep reference by ID to trigger popups from the sidebar list
 
     // 2. Initialize Leaflet Map
@@ -29,10 +31,19 @@ document.addEventListener('DOMContentLoaded', function () {
             maxZoom: 19
         }).addTo(map);
 
+        // Prepare Esri Satellite layer (not added to map by default)
+        esriSatelliteLayer = L.tileLayer('https://server.arcgisonline.com/ArcGIS/rest/services/World_Imagery/MapServer/tile/{z}/{y}/{x}', {
+            attribution: '&copy; Esri, Maxar, Earthstar Geographics',
+            maxZoom: 19
+        });
+
         markersLayer.addTo(map);
 
         // Load Spatial GeoJSON Overlays
         loadGeojsonLayers();
+
+        // Load BPS Administrative Boundaries
+        loadBpsGeojsonLayers();
 
         // Initial Data Fetch
         fetchFloodIncidents();
@@ -260,7 +271,98 @@ document.addEventListener('DOMContentLoaded', function () {
             .catch(err => console.error('Error fetching GeoJSON list API:', err));
     }
 
-    // 9. Attach DOM Event Listeners
+    // 8b. Load BPS Administrative Boundary GeoJSON layers
+    function loadBpsGeojsonLayers() {
+        fetch(config.apiBpsGeojsonUrl)
+            .then(res => res.json())
+            .then(layers => {
+                layers.forEach(layer => {
+                    fetch(layer.url)
+                        .then(geojsonRes => geojsonRes.json())
+                        .then(geojsonData => {
+                            const bpsLayer = L.geoJSON(geojsonData, {
+                                style: {
+                                    color: '#06D6A0', // Primary Green
+                                    weight: 2,
+                                    fillColor: '#06D6A0',
+                                    fillOpacity: 0.06,
+                                    dashArray: '3, 6'
+                                },
+                                onEachFeature: function(feature, layer) {
+                                    // Show feature name if available in properties
+                                    const props = feature.properties || {};
+                                    const name = props.NAMOBJ || props.name || props.NAME || props.WADMKK || props.NAMKAB || layer.name || 'Batas BPS';
+                                    layer.bindPopup(`
+                                        <strong style="font-family: 'Poppins', sans-serif; font-size: 0.95rem; color: var(--primary-dark-blue);">${name}</strong>
+                                        <br><span style="font-size: 0.82rem; color: var(--text-muted); font-weight: 500;">Batas Administrasi BPS</span>
+                                    `);
+                                }
+                            }).addTo(map);
+                            
+                            bpsGeojsonLayers.push(bpsLayer);
+                        })
+                        .catch(err => console.error(`Error loading BPS GeoJSON: ${layer.name}`, err));
+                });
+            })
+            .catch(err => console.error('Error fetching BPS GeoJSON API:', err));
+    }
+
+    // 9. Initialize Layer Toggle Controls (checkbox ↔ layer visibility)
+    function initLayerToggles() {
+        // Toggle: Admin-uploaded GeoJSON boundaries
+        const geojsonCheckbox = document.getElementById('layer-geojson-checkbox');
+        if (geojsonCheckbox) {
+            geojsonCheckbox.addEventListener('change', function() {
+                geojsonLayers.forEach(layer => {
+                    if (this.checked) {
+                        map.addLayer(layer);
+                    } else {
+                        map.removeLayer(layer);
+                    }
+                });
+            });
+        }
+
+        // Toggle: Real-time flood markers
+        const realtimeCheckbox = document.getElementById('layer-realtime-checkbox');
+        if (realtimeCheckbox) {
+            realtimeCheckbox.addEventListener('change', function() {
+                if (this.checked) {
+                    map.addLayer(markersLayer);
+                } else {
+                    map.removeLayer(markersLayer);
+                }
+            });
+        }
+
+        // Toggle: BPS GeoJSON boundaries
+        const bpsCheckbox = document.getElementById('layer-bps-geojson-checkbox');
+        if (bpsCheckbox) {
+            bpsCheckbox.addEventListener('change', function() {
+                bpsGeojsonLayers.forEach(layer => {
+                    if (this.checked) {
+                        map.addLayer(layer);
+                    } else {
+                        map.removeLayer(layer);
+                    }
+                });
+            });
+        }
+
+        // Toggle: Esri Satellite Basemap
+        const esriCheckbox = document.getElementById('layer-esri-checkbox');
+        if (esriCheckbox) {
+            esriCheckbox.addEventListener('change', function() {
+                if (this.checked) {
+                    esriSatelliteLayer.addTo(map);
+                } else {
+                    map.removeLayer(esriSatelliteLayer);
+                }
+            });
+        }
+    }
+
+    // 10. Attach DOM Event Listeners
     // Filter updates
     document.getElementById('search-input').addEventListener('input', debounce(fetchFloodIncidents, 400));
     document.getElementById('region-filter').addEventListener('change', fetchFloodIncidents);
@@ -288,6 +390,6 @@ document.addEventListener('DOMContentLoaded', function () {
         };
     }
 
-    // 10. Execution Boot
+    // 11. Execution Boot
     initMap();
 });
