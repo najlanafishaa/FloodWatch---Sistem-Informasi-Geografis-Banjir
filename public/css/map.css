@@ -506,7 +506,7 @@
 .layer-item {
     display: flex;
     align-items: center;
-    gap: 0.8rem;
+    gap: 0.6rem;
     cursor: pointer;
     font-weight: 600;
     font-size: 0.88rem;
@@ -518,6 +518,14 @@
     height: 18px;
     accent-color: var(--primary-blue);
     cursor: pointer;
+}
+
+.layer-dot {
+    width: 12px;
+    height: 12px;
+    border-radius: 50%;
+    display: inline-block;
+    border: 1px solid var(--primary-dark-blue);
 }
 
 /* Stats Cards */
@@ -533,6 +541,7 @@
     text-align: center;
     font-weight: 600;
     color: var(--text-muted);
+    grid-column: span 2;
 }
 
 .stat-card-wide {
@@ -564,16 +573,10 @@
 
 .stat-card-val {
     font-family: 'Poppins', sans-serif;
-    font-size: 1.3rem;
+    font-size: 1.1rem;
     font-weight: 800;
     color: var(--primary-dark-blue);
     display: block;
-}
-
-.stat-card-sub {
-    font-size: 0.72rem;
-    color: var(--text-secondary);
-    font-weight: 600;
 }
 
 /* Historical Records List */
@@ -626,4 +629,3 @@
     color: var(--primary-dark-blue);
     font-weight: 700;
 }
-

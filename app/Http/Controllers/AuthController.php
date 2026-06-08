@@ -13,7 +13,14 @@ class AuthController extends Controller
     public function showLogin()
     {
         if (Auth::check()) {
-            return redirect()->route('admin.dashboard');
+            if (Auth::user()->role === 'admin') {
+                return redirect()->route('admin.floods.index');
+            } else {
+                // Logout non-admin users so they aren't stuck in a redirect loop
+                Auth::logout();
+                request()->session()->invalidate();
+                request()->session()->regenerateToken();
+            }
         }
         return view('login');
     }
@@ -31,7 +38,7 @@ class AuthController extends Controller
         if (Auth::attempt($credentials, $request->boolean('remember'))) {
             $request->session()->regenerate();
 
-            return redirect()->intended(route('admin.dashboard'))
+            return redirect()->intended(route('admin.floods.index'))
                 ->with('success', 'Selamat datang kembali! Anda berhasil login.');
         }
 

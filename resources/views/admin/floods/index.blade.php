@@ -103,7 +103,7 @@
                     Menampilkan {{ $floods->firstItem() ?? 0 }} - {{ $floods->lastItem() ?? 0 }} dari {{ $floods->total() }} Laporan
                 </span>
                 <div class="pagination-links">
-                    {{ $floods->links('vendor.pagination.simple-tailwind') ?? $floods->links() }}
+                    {{ $floods->links() }}
                 </div>
             </div>
         @endif

@@ -102,58 +102,128 @@ class PublicController extends Controller
     }
 
     /**
+     * API to fetch BPS administrative boundary GeoJSON data.
+     * Scans the public/geojson directory for any .json or .geojson files
+     * and returns them as available BPS boundary layers.
+     */
+    public function apiBpsGeojson()
+    {
+        $geojsonPath = public_path('geojson');
+        $layers = [];
+
+        if (is_dir($geojsonPath)) {
+            $files = scandir($geojsonPath);
+            foreach ($files as $file) {
+                // Include all .json and .geojson files
+                if (preg_match('/\.(json|geojson)$/i', $file)) {
+                    $layers[] = [
+                        'name' => pathinfo($file, PATHINFO_FILENAME),
+                        'url' => asset('geojson/' . $file),
+                        'filename' => $file,
+                    ];
+                }
+            }
+        }
+
+        return response()->json($layers);
+    }
+
+    /**
      * API to fetch historical weather-flood statistics from the Kaggle dataset.
      */
     public function apiDatasetStats()
     {
-        $totalRecords = \App\Models\WeatherFloodRecord::count();
-        $floodDays = \App\Models\WeatherFloodRecord::where('flood_occurred', true)->count();
-        $normalDays = $totalRecords - $floodDays;
+        try {
+            $totalRecords = \App\Models\WeatherFloodRecord::count();
+            
+            // Return empty stats if no data
+            if ($totalRecords === 0) {
+                return response()->json([
+                    'total_records' => 0,
+                    'flood_days' => 0,
+                    'normal_days' => 0,
+                    'avg_rainfall_flood' => 0,
+                    'avg_rainfall_normal' => 0,
+                    'avg_rainfall_1week_flood' => 0,
+                    'avg_rainfall_1week_normal' => 0,
+                    'avg_temp_flood' => 0,
+                    'avg_temp_normal' => 0,
+                    'avg_humidity_flood' => 0,
+                    'avg_humidity_normal' => 0,
+                    'monsoon_wind_flood' => [],
+                    'recent_records' => []
+                ]);
+            }
 
-        $avgRainfallFlood = \App\Models\WeatherFloodRecord::where('flood_occurred', true)->avg('rainfall') ?? 0;
-        $avgRainfallNormal = \App\Models\WeatherFloodRecord::where('flood_occurred', false)->avg('rainfall') ?? 0;
+            $floodDays = \App\Models\WeatherFloodRecord::where('flood_occurred', true)->count();
+            $normalDays = $totalRecords - $floodDays;
 
-        $avgRainfallOneWeekFlood = \App\Models\WeatherFloodRecord::where('flood_occurred', true)->avg('rainfall_one_week') ?? 0;
-        $avgRainfallOneWeekNormal = \App\Models\WeatherFloodRecord::where('flood_occurred', false)->avg('rainfall_one_week') ?? 0;
+            $avgRainfallFlood = \App\Models\WeatherFloodRecord::where('flood_occurred', true)->avg('rainfall') ?? 0;
+            $avgRainfallNormal = \App\Models\WeatherFloodRecord::where('flood_occurred', false)->avg('rainfall') ?? 0;
 
-        $avgTempFlood = \App\Models\WeatherFloodRecord::where('flood_occurred', true)->avg('avg_temperature') ?? 0;
-        $avgTempNormal = \App\Models\WeatherFloodRecord::where('flood_occurred', false)->avg('avg_temperature') ?? 0;
+            $avgRainfallOneWeekFlood = \App\Models\WeatherFloodRecord::where('flood_occurred', true)->avg('rainfall_one_week') ?? 0;
+            $avgRainfallOneWeekNormal = \App\Models\WeatherFloodRecord::where('flood_occurred', false)->avg('rainfall_one_week') ?? 0;
 
-        $avgHumidityFlood = \App\Models\WeatherFloodRecord::where('flood_occurred', true)->avg('avg_humidity') ?? 0;
-        $avgHumidityNormal = \App\Models\WeatherFloodRecord::where('flood_occurred', false)->avg('avg_humidity') ?? 0;
+            $avgTempFlood = \App\Models\WeatherFloodRecord::where('flood_occurred', true)->avg('avg_temperature') ?? 0;
+            $avgTempNormal = \App\Models\WeatherFloodRecord::where('flood_occurred', false)->avg('avg_temperature') ?? 0;
 
-        // Group by monsoon wind
-        $monsoonWindFlood = \App\Models\WeatherFloodRecord::where('flood_occurred', true)
-            ->selectRaw('monsoon_wind, count(*) as count')
-            ->groupBy('monsoon_wind')
-            ->get();
+            $avgHumidityFlood = \App\Models\WeatherFloodRecord::where('flood_occurred', true)->avg('avg_humidity') ?? 0;
+            $avgHumidityNormal = \App\Models\WeatherFloodRecord::where('flood_occurred', false)->avg('avg_humidity') ?? 0;
 
-        // Get latest 10 historical records
-        $recentRecords = \App\Models\WeatherFloodRecord::orderBy('date', 'desc')->take(10)->get();
+            // Group by monsoon wind
+            $monsoonWindFlood = \App\Models\WeatherFloodRecord::where('flood_occurred', true)
+                ->selectRaw('monsoon_wind, count(*) as count')
+                ->groupBy('monsoon_wind')
+                ->get();
 
-        return response()->json([
-            'total_records' => $totalRecords,
-            'flood_days' => $floodDays,
-            'normal_days' => $normalDays,
-            'avg_rainfall_flood' => round($avgRainfallFlood, 2),
-            'avg_rainfall_normal' => round($avgRainfallNormal, 2),
-            'avg_rainfall_1week_flood' => round($avgRainfallOneWeekFlood, 2),
-            'avg_rainfall_1week_normal' => round($avgRainfallOneWeekNormal, 2),
-            'avg_temp_flood' => round($avgTempFlood, 2),
-            'avg_temp_normal' => round($avgTempNormal, 2),
-            'avg_humidity_flood' => round($avgHumidityFlood, 2),
-            'avg_humidity_normal' => round($avgHumidityNormal, 2),
-            'monsoon_wind_flood' => $monsoonWindFlood,
-            'recent_records' => $recentRecords
-        ]);
+            // Get latest 10 historical records
+            $recentRecords = \App\Models\WeatherFloodRecord::orderBy('date', 'desc')->take(10)->get();
+
+            return response()->json([
+                'total_records' => $totalRecords,
+                'flood_days' => $floodDays,
+                'normal_days' => $normalDays,
+                'avg_rainfall_flood' => round($avgRainfallFlood, 2),
+                'avg_rainfall_normal' => round($avgRainfallNormal, 2),
+                'avg_rainfall_1week_flood' => round($avgRainfallOneWeekFlood, 2),
+                'avg_rainfall_1week_normal' => round($avgRainfallOneWeekNormal, 2),
+                'avg_temp_flood' => round($avgTempFlood, 2),
+                'avg_temp_normal' => round($avgTempNormal, 2),
+                'avg_humidity_flood' => round($avgHumidityFlood, 2),
+                'avg_humidity_normal' => round($avgHumidityNormal, 2),
+                'monsoon_wind_flood' => $monsoonWindFlood,
+                'recent_records' => $recentRecords
+            ]);
+        } catch (\Exception $e) {
+            return response()->json([
+                'total_records' => 0,
+                'flood_days' => 0,
+                'normal_days' => 0,
+                'avg_rainfall_flood' => 0,
+                'avg_rainfall_normal' => 0,
+                'avg_rainfall_1week_flood' => 0,
+                'avg_rainfall_1week_normal' => 0,
+                'avg_temp_flood' => 0,
+                'avg_temp_normal' => 0,
+                'avg_humidity_flood' => 0,
+                'avg_humidity_normal' => 0,
+                'monsoon_wind_flood' => [],
+                'recent_records' => []
+            ]);
+        }
     }
 
     /**
-     * Check whether the Kaggle dataset file exists on the server.
+     * Check whether the Kaggle dataset has been imported into the database.
+     * Instead of checking a hardcoded file path, we check if the WeatherFloodRecord table has data.
      */
     public function apiDatasetExists()
     {
-        $path = base_path('C:/Users/ACER/.cache/kagglehub/datasets/ramadhannurpambudi/dataset-kejadian-banjir-dan-variabel-pendukung/versions/1/Dataset banjir.xlsx');
-        return response()->json(['exists' => file_exists($path)]);
+        try {
+            $hasData = \App\Models\WeatherFloodRecord::count() > 0;
+            return response()->json(['exists' => $hasData]);
+        } catch (\Exception $e) {
+            return response()->json(['exists' => false]);
+        }
     }
 }

@@ -7,12 +7,15 @@
     <div class="admin-page-header">
         <div>
             <h1 class="admin-page-title">Ringkasan Sistem</h1>
-            <p class="admin-page-subtitle">Ikhtisar data pemantauan banjir Provinsi Lampung</p>
+            <p class="admin-page-subtitle">Selamat datang kembali, <strong>{{ auth()->user()->name }}</strong>. Ikhtisar data pemantauan banjir Provinsi Lampung.</p>
         </div>
         <div style="display: flex; gap: 0.8rem;">
             <a href="{{ route('admin.floods.create') }}" class="btn-primary" style="padding: 0.6rem 1.4rem; font-size: 0.9rem; border-radius: 10px;">
                 <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><line x1="12" y1="5" x2="12" y2="19"/><line x1="5" y1="12" x2="19" y2="12"/></svg>
                 Tambah Titik Banjir
+            </a>
+            <a href="{{ route('admin.geojson.index') }}" class="btn-secondary" style="padding: 0.6rem 1.4rem; font-size: 0.9rem; border-radius: 10px;">
+                Kelola GeoJSON
             </a>
         </div>
     </div>
@@ -28,7 +31,7 @@
         <!-- Card Total Incidents -->
         <div class="admin-stat-card glass-panel">
             <div class="admin-stat-val" style="color: var(--primary-blue);">{{ $totalFloods }}</div>
-            <div class="admin-stat-label">Total Titik Banjir</div>
+            <div class="admin-stat-label">Total Laporan Banjir</div>
         </div>
 
         <!-- Card Active Warnings -->
@@ -126,9 +129,12 @@
 
         <!-- Right: Recent Activity -->
         <div class="panel-card glass-panel">
-            <h3 class="panel-card-title">Pembaruan Aktivitas Terkini</h3>
+            <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 1.2rem;">
+                <h3 class="panel-card-title" style="margin-bottom: 0;">Pembaruan Aktivitas Terkini</h3>
+                <a href="{{ route('admin.floods.index') }}" style="font-size: 0.85rem; font-weight: 600; color: var(--primary-blue);">Kelola Data &rarr;</a>
+            </div>
             
-            <div style="display: flex; flex-direction: column; gap: 1.2rem; margin-top: 0.5rem;">
+            <div style="display: flex; flex-direction: column; gap: 1.2rem;">
                 @forelse($recentFloods as $activity)
                     <div style="border-bottom: 2px solid var(--border-color); padding-bottom: 1rem; display: flex; flex-direction: column; gap: 0.4rem;">
                         <div style="display: flex; justify-content: space-between; align-items: flex-start; gap: 0.5rem; flex-wrap: wrap;">
