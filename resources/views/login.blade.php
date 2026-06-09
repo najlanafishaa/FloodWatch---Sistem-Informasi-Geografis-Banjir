@@ -11,7 +11,7 @@
             justify-content: center;
             padding: 2rem;
             position: relative;
-            background: radial-gradient(circle at 50% 30%, rgba(252, 246, 189, 0.4) 0%, rgba(255, 255, 255, 1) 90%);
+            background: radial-gradient(circle at 50% 30%, rgba(252, 246, 189, 0.8) 0%, rgba(252, 246, 189, 1) 100%);
         }
 
         .login-card {
@@ -147,7 +147,7 @@
             </div>
 
             <!-- Login Form -->
-            <form action="{{ route('login') }}" method="POST" autocomplete="off">
+            <form action="{{ route('admin.login.post') }}" method="POST" autocomplete="off">
                 @csrf
                 
                 <!-- Success Alert -->

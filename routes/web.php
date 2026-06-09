@@ -16,11 +16,12 @@ Route::get('/api/dataset-stats', [PublicController::class, 'apiDatasetStats'])->
 Route::get('/api/dataset-exists', [PublicController::class, 'apiDatasetExists'])->name('api.dataset-exists');
 Route::get('/api/bps-geojson', [PublicController::class, 'apiBpsGeojson'])->name('api.bps-geojson');
 
-
-// Admin Auth Routes (separate URL: /admin/login)
-Route::get('/admin/login', [AuthController::class, 'showLogin'])->name('login');
-Route::post('/admin/login', [AuthController::class, 'login'])->name('login.post');
-Route::post('/admin/logout', [AuthController::class, 'logout'])->name('logout');
+// Admin Auth Routes
+Route::get('/login', [AuthController::class, 'showLogin'])->name('login');
+Route::post('/login', [AuthController::class, 'login'])->name('login.post');
+Route::get('/admin/login', [AuthController::class, 'showLogin'])->name('admin.login');
+Route::post('/admin/login', [AuthController::class, 'login'])->name('admin.login.post');
+Route::post('/logout', [AuthController::class, 'logout'])->name('logout');
 
 // Protected Admin Routes
 Route::middleware(['auth', 'admin'])->prefix('admin')->name('admin.')->group(function () {

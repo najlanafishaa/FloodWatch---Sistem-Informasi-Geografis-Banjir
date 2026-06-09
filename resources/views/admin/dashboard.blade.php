@@ -20,6 +20,19 @@
         </div>
     </div>
 
+    <div class="panel-card glass-panel" style="margin-bottom: 1.8rem;">
+        <h3 class="panel-card-title">Tugas dan Akses Admin</h3>
+        <div style="display: grid; gap: 1rem; margin-top: 1rem; font-size: 0.93rem; color: var(--text-secondary);">
+            <p>Selamat datang di dashboard admin. Di sini Anda dapat:</p>
+            <ul style="list-style: disc inside; padding-left: 1rem; color: var(--text-secondary);">
+                <li>Memantau dan mengelola data titik banjir</li>
+                <li>Mengunggah atau menonaktifkan layer GeoJSON wilayah</li>
+                <li>Mengecek ringkasan status siaga dan wilayah terpantau</li>
+                <li>Kelola informasi wilayah dan data pemantauan secara real-time</li>
+            </ul>
+        </div>
+    </div>
+
     <!-- Stats Grid -->
     <div class="admin-stats-grid">
         <!-- Card Total Regions -->
@@ -93,7 +106,7 @@
                     <!-- Aman -->
                     <div>
                         <div style="display: flex; justify-content: space-between; font-size: 0.85rem; margin-bottom: 0.4rem;">
-                            <span style="font-weight: 700; color: #22543D;">AMAN (Kondusif)</span>
+                            <span style="font-weight: 700; color: var(--primary-dark-blue);">AMAN (Kondusif)</span>
                             <span style="font-weight: 700; color: var(--primary-dark-blue);">{{ $statusBreakdown['Aman'] }} Titik</span>
                         </div>
                         <div style="background: #E2E8F0; height: 10px; border-radius: 6px; overflow: hidden; border: 1.5px solid var(--primary-dark-blue);">

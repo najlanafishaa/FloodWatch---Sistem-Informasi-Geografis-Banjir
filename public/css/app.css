@@ -7,44 +7,44 @@
 
 :root {
     /* Harmony Palette (Approved Colors) */
-    --primary-dark-blue: #073B4C;
-    --primary-blue: #118AB2;
-    --primary-green: #06D6A0;
+    --primary-dark-blue: #5f4a29;
+    --primary-blue: #8b6f38;
+    --primary-green: #C8A475;
     --primary-yellow: #FFD166;
-    --primary-cream: #FCF6BD;
+    --primary-cream: #FDFBD4;
     
     /* Layout & Surfaces (Light Theme) */
-    --bg-light: #F8F9FA;
+    --bg-light: #FBF7D5;
     --bg-surface: #FFFFFF;
     --bg-card: #FFFFFF;
-    --border-color: #E9ECEF;
-    --border-hover: #118AB2;
-    --border-thick: 2px solid #073B4C;
+    --border-color: #E9DDAD;
+    --border-hover: #D6C285;
+    --border-thick: 2px solid #5f4a29;
     
     /* Status Colors */
     --status-awas: #EF476F;      /* Crimson Alert */
     --status-siaga: #F77F00;     /* Vibrant Orange */
     --status-waspada: #FFD166;   /* Sun Gold */
-    --status-aman: #06D6A0;      /* Emerald Green */
+    --status-aman: #C8A475;      /* Warm Gold */
     
     /* Status Light Transparents for Badges */
     --status-awas-bg: rgba(239, 71, 111, 0.12);
     --status-siaga-bg: rgba(247, 127, 0, 0.12);
     --status-waspada-bg: rgba(255, 209, 102, 0.15);
-    --status-aman-bg: rgba(6, 214, 160, 0.12);
+    --status-aman-bg: rgba(200, 164, 117, 0.18);
 
     /* Text Colors */
-    --text-primary: #073B4C;     /* Dark blue text for premium visual contrast */
-    --text-secondary: #4A5568;
-    --text-muted: #718096;
+    --text-primary: #5f4a29;
+    --text-secondary: #6d5c44;
+    --text-muted: #8c7a5b;
     --text-light: #FFFFFF;
-    --text-dark: #073B4C;
+    --text-dark: #5f4a29;
     
     /* Glows & Shadows */
-    --glow-blue: 0 4px 14px rgba(17, 138, 178, 0.4);
-    --shadow-premium: 0 10px 30px -5px rgba(7, 59, 76, 0.08), 0 0 1px 1px rgba(7, 59, 76, 0.04);
-    --shadow-flat: 4px 4px 0px 0px #073B4C;
-    --shadow-flat-hover: 6px 6px 0px 0px #073B4C;
+    --glow-blue: 0 4px 14px rgba(157, 134, 65, 0.35);
+    --shadow-premium: 0 10px 30px -5px rgba(94, 74, 41, 0.08), 0 0 1px 1px rgba(94, 74, 41, 0.04);
+    --shadow-flat: 4px 4px 0px 0px #5f4a29;
+    --shadow-flat-hover: 6px 6px 0px 0px #5f4a29;
     
     /* Transition Speed */
     --transition-smooth: all 0.25s cubic-bezier(0.4, 0, 0.2, 1);
@@ -59,7 +59,7 @@
 }
 
 body {
-    background-color: var(--bg-light);
+    background-color: var(--primary-cream);
     color: var(--text-secondary);
     min-height: 100vh;
     overflow-x: hidden;
@@ -103,7 +103,7 @@ a {
 
 .card-clean:hover {
     transform: translateY(-4px);
-    box-shadow: 0 15px 35px -5px rgba(7, 59, 76, 0.12);
+    box-shadow: 0 15px 35px -5px rgba(95, 74, 41, 0.12);
 }
 
 /* Buttons */
@@ -126,7 +126,7 @@ a {
 .btn-primary:hover {
     transform: translate(-2px, -2px);
     box-shadow: var(--shadow-flat-hover);
-    background: #0e7293;
+    background: #a27d46;
 }
 
 .btn-secondary {
@@ -194,9 +194,38 @@ a {
 
 .badge-aman {
     background-color: var(--status-aman-bg);
-    color: #22543D;
+    color: var(--text-primary);
 }
 .badge-aman::before { background-color: var(--status-aman); }
+
+.alert-banner {
+    padding: 1rem 1.5rem;
+    border-radius: 12px;
+    margin-bottom: 1.5rem;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    font-size: 0.92rem;
+    font-weight: 600;
+    border: 2px solid var(--primary-dark-blue);
+    box-shadow: var(--shadow-flat);
+    animation: slideDown 0.3s ease-out;
+}
+
+.alert-success {
+    background: var(--status-aman-bg);
+    color: var(--text-primary);
+}
+
+.alert-error {
+    background: var(--status-awas-bg);
+    color: #C53030;
+}
+
+@keyframes slideDown {
+    from { transform: translateY(-10px); opacity: 0; }
+    to { transform: translateY(0); opacity: 1; }
+}
 
 /* Custom Scrollbar */
 ::-webkit-scrollbar {
@@ -214,21 +243,21 @@ a {
 }
 
 ::-webkit-scrollbar-thumb:hover {
-    background: var(--primary-blue);
+    background: var(--primary-dark-blue);
 }
 
 /* Animations */
 @keyframes pulse {
     0% {
         transform: scale(0.95);
-        box-shadow: 0 0 0 0 rgba(17, 138, 178, 0.5);
+        box-shadow: 0 0 0 0 rgba(157, 134, 65, 0.5);
     }
     70% {
         transform: scale(1);
-        box-shadow: 0 0 0 10px rgba(17, 138, 178, 0);
+        box-shadow: 0 0 0 10px rgba(157, 134, 65, 0);
     }
     100% {
         transform: scale(0.95);
-        box-shadow: 0 0 0 0 rgba(17, 138, 178, 0);
+        box-shadow: 0 0 0 0 rgba(157, 134, 65, 0);
     }
 }

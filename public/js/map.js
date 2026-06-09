@@ -252,9 +252,9 @@ document.addEventListener('DOMContentLoaded', function () {
                             // Standard Polygon Styling for Lampungs admin boundaries (Sleek primary-blue theme)
                             const layerPolygon = L.geoJSON(geojsonData, {
                                 style: {
-                                    color: '#118AB2', // Primary Blue
+                                    color: '#8b6f38', // Warm accent
                                     weight: 2,
-                                    fillColor: '#118AB2',
+                                    fillColor: '#8b6f38',
                                     fillOpacity: 0.08,
                                     dashArray: '5, 5'
                                 }

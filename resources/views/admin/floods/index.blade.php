@@ -61,7 +61,7 @@
                             <td>
                                 <span class="badge-status badge-{{ strtolower($flood->status) }}">{{ $flood->status }}</span>
                             </td>
-                            <td style="color: var(--accent-blue); font-weight: 700;">{{ $flood->water_level }} cm</td>
+                            <td style="color: var(--primary-blue); font-weight: 700;">{{ $flood->water_level }} cm</td>
                             <td style="font-family: monospace; font-size: 0.82rem; color: var(--text-secondary);">
                                 {{ $flood->latitude }},<br>{{ $flood->longitude }}
                             </td>

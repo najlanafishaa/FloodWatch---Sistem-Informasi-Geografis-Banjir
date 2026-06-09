@@ -16,7 +16,7 @@
     background: rgba(255, 255, 255, 0.95);
     backdrop-filter: blur(8px);
     border-bottom: 3px solid var(--primary-dark-blue);
-    box-shadow: 0 4px 12px rgba(7, 59, 76, 0.05);
+    box-shadow: 0 4px 12px rgba(95, 74, 41, 0.05);
     transition: var(--transition-smooth);
 }
 
@@ -342,7 +342,7 @@
 }
 
 .water-badge {
-    background: rgba(17, 138, 178, 0.1);
+    background: rgba(139, 111, 56, 0.1);
     color: var(--primary-blue);
     border: 2px solid var(--primary-dark-blue);
     padding: 0.4rem 0.8rem;

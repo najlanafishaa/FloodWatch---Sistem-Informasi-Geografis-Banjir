@@ -9,7 +9,7 @@
     width: 100vw;
     overflow: hidden;
     position: relative;
-    background-color: var(--bg-light);
+    background-color: var(--primary-cream);
 }
 
 /* Sidebar Filter Panel */
@@ -25,7 +25,7 @@
     border-left: none;
     border-right: 3px solid var(--primary-dark-blue);
     background: #FFFFFF;
-    box-shadow: 4px 0 15px rgba(7, 59, 76, 0.05);
+    box-shadow: 4px 0 15px rgba(95, 74, 41, 0.05);
     transition: var(--transition-smooth);
 }
 
@@ -135,7 +135,7 @@
     cursor: pointer;
     appearance: none;
     transition: var(--transition-smooth);
-    background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='24' height='24' viewBox='0 0 24 24' fill='none' stroke='%23073B4C' stroke-width='2.5' stroke-linecap='round' stroke-linejoin='round'%3E%3Cpolyline points='6 9 12 15 18 9'%3E%3C/polyline%3E%3C/svg%3E");
+    background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='24' height='24' viewBox='0 0 24 24' fill='none' stroke='%235f4a29' stroke-width='2.5' stroke-linecap='round' stroke-linejoin='round'%3E%3Cpolyline points='6 9 12 15 18 9'%3E%3C/polyline%3E%3C/svg%3E");
     background-repeat: no-repeat;
     background-position: right 1rem center;
     background-size: 1.2rem;
@@ -383,7 +383,7 @@
 .pulse-waspada-ring { border: 2.5px solid var(--status-waspada); background-color: rgba(255, 209, 102, 0.35); }
 
 .pulse-aman-core { background-color: var(--status-aman); }
-.pulse-aman-ring { border: 2.5px solid var(--status-aman); background-color: rgba(6, 214, 160, 0.35); }
+.pulse-aman-ring { border: 2.5px solid var(--status-aman); background-color: rgba(200, 164, 117, 0.22); }
 
 @keyframes markerPulse {
     0% {

@@ -41,7 +41,7 @@
                             <div class="upload-title">Pilih Berkas Komputer</div>
                             <p class="upload-desc">Seret berkas ke sini atau klik untuk mencari. Format harus berupa format JSON/GeoJSON yang valid (Max 10MB).</p>
                             <input type="file" name="geojson_file" id="geojson_file" style="display: none;" accept=".geojson,.json" onchange="updateFileName(this)" required>
-                            <strong id="file-name-display" style="font-size: 0.85rem; color: var(--accent-teal); display: none; word-break: break-all; margin-top: 0.5rem;"></strong>
+                            <strong id="file-name-display" style="font-size: 0.85rem; color: var(--primary-blue); display: none; word-break: break-all; margin-top: 0.5rem;"></strong>
                         </div>
                         
                         @error('geojson_file')
@@ -50,8 +50,8 @@
                     </div>
 
                     <!-- Visual tips about integration -->
-                    <div style="background: hsla(174, 100%, 41%, 0.05); border: 1px solid hsla(174, 100%, 41%, 0.15); padding: 1rem; border-radius: 10px; font-size: 0.82rem; color: var(--text-secondary); display: flex; flex-direction: column; gap: 0.4rem;">
-                        <span style="font-weight: 700; color: var(--accent-teal); display: flex; align-items: center; gap: 0.3rem;">
+                    <div style="background: var(--primary-cream); border: 1px solid rgba(139, 111, 56, 0.15); padding: 1rem; border-radius: 10px; font-size: 0.82rem; color: var(--text-secondary); display: flex; flex-direction: column; gap: 0.4rem;">
+                        <span style="font-weight: 700; color: var(--primary-blue); display: flex; align-items: center; gap: 0.3rem;">
                             <svg xmlns="http://www.w3.org/2000/svg" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><line x1="12" y1="16" x2="12" y2="12"/><line x1="12" y1="8" x2="12.01" y2="8"/></svg>
                             Tips Ekspor Spasial QGIS
                         </span>

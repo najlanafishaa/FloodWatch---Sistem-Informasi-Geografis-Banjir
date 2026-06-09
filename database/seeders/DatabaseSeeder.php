@@ -289,5 +289,116 @@ class DatabaseSeeder extends Seeder
             'description' => 'Pascagenangan akibat pasang air laut di Krui, air dilaporkan telah surut sepenuhnya dan jalan lintas barat Sumatera kembali aman dilalui kendaraan.',
             'reported_at' => now()->subHours(10),
         ]);
+
+        // Lampung Tengah Floods
+        Flood::create([
+            'region_id' => $lampungTengah->id,
+            'location_name' => 'Gebang Rejo (Bantaran Way Seputih)',
+            'latitude' => -4.93370000,
+            'longitude' => 105.13480000,
+            'status' => 'Siaga',
+            'water_level' => 85,
+            'affected_population' => 320,
+            'weather' => 'Hujan Deras',
+            'description' => 'Luapan Way Seputih menggenangi permukiman pemukiman di Gebang Rejo. Warga diminta siaga, akses jalan nasional sempat tergenang.',
+            'reported_at' => now()->subHours(6),
+        ]);
+
+        Flood::create([
+            'region_id' => $lampungTengah->id,
+            'location_name' => 'Terbanggi Besar (Kali Way Sekampung)',
+            'latitude' => -5.01730000,
+            'longitude' => 105.14120000,
+            'status' => 'Waspada',
+            'water_level' => 45,
+            'affected_population' => 110,
+            'weather' => 'Mendung',
+            'description' => 'Genangan pinggir sungai Way Sekampung mulai mengganggu akses jalan pedesaan namun belum memasuki bangunan warga.',
+            'reported_at' => now()->subHours(3),
+        ]);
+
+        // Lampung Utara Floods
+        Flood::create([
+            'region_id' => $lampungUtara->id,
+            'location_name' => 'Kotabumi Selatan (Kali Way Rarem)',
+            'latitude' => -4.71310000,
+            'longitude' => 105.15020000,
+            'status' => 'Awas',
+            'water_level' => 145,
+            'affected_population' => 670,
+            'weather' => 'Hujan Lebat',
+            'description' => 'Kali Way Rarem meluap di Kotabumi Selatan, jalan utama dan permukiman terendam, evakuasi warga hingga ketinggian 1,45 meter.',
+            'reported_at' => now()->subHours(4),
+        ]);
+
+        // Lampung Barat Floods
+        Flood::create([
+            'region_id' => $lampungBarat->id,
+            'location_name' => 'Liwa (Desa Batu Brak)',
+            'latitude' => -5.33460000,
+            'longitude' => 104.50580000,
+            'status' => 'Siaga',
+            'water_level' => 90,
+            'affected_population' => 280,
+            'weather' => 'Hujan Deras',
+            'description' => 'Aliran air lereng bukit memasuki lembah permukiman Desa Batu Brak. Banjir bandang kecil terjadi dan menutup akses jalan desa.',
+            'reported_at' => now()->subHours(5),
+        ]);
+
+        // Pringsewu Floods
+        Flood::create([
+            'region_id' => $pringsewu->id,
+            'location_name' => 'Pagelaran (Jalan Nasional)',
+            'latitude' => -5.35340000,
+            'longitude' => 105.20760000,
+            'status' => 'Waspada',
+            'water_level' => 35,
+            'affected_population' => 75,
+            'weather' => 'Gerimis',
+            'description' => 'Genangan air lokal terjadi pada jalan nasional di Pagelaran akibat drainase tersumbat, warga diimbau berhati-hati.',
+            'reported_at' => now()->subHours(2),
+        ]);
+
+        // Tulang Bawang Barat Floods
+        Flood::create([
+            'region_id' => $tulangBawangBarat->id,
+            'location_name' => 'Tulanggiring (Desa Dwi Makmur)',
+            'latitude' => -4.60120000,
+            'longitude' => 105.12840000,
+            'status' => 'Waspada',
+            'water_level' => 55,
+            'affected_population' => 180,
+            'weather' => 'Hujan Ringan',
+            'description' => 'Tinggi air di daerah persawahan Tulanggiring meningkat, sebagian lahan terendam namun pemukiman utama masih aman.',
+            'reported_at' => now()->subHours(7),
+        ]);
+
+        // Way Kanan Floods
+        Flood::create([
+            'region_id' => $wayKanan->id,
+            'location_name' => 'Blambangan Umpu (Pinggiran Sungai)',
+            'latitude' => -4.36480000,
+            'longitude' => 105.60750000,
+            'status' => 'Siaga',
+            'water_level' => 95,
+            'affected_population' => 410,
+            'weather' => 'Hujan Deras',
+            'description' => 'Luapan sungai kecil menggenangi permukiman di pinggiran Blambangan Umpu, petugas sedang memantau jalur evakuasi.',
+            'reported_at' => now()->subHours(3),
+        ]);
+
+        // Mesuji Floods
+        Flood::create([
+            'region_id' => $mesuji->id,
+            'location_name' => 'Mesuji (Jalan Desa Sri Tanjung)',
+            'latitude' => -4.91330000,
+            'longitude' => 105.31890000,
+            'status' => 'Waspada',
+            'water_level' => 60,
+            'affected_population' => 210,
+            'weather' => 'Hujan Sedang',
+            'description' => 'Jalan desa di Sri Tanjung tergenang setinggi 60 cm, warga setempat diminta menghindari area rendah.',
+            'reported_at' => now()->subHours(8),
+        ]);
     }
 }
