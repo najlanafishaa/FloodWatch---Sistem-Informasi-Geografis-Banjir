@@ -7,11 +7,11 @@
 
 :root {
     /* Harmony Palette (Approved Colors) */
-    --primary-dark-blue: #5f4a29;
-    --primary-blue: #8b6f38;
-    --primary-green: #C8A475;
+    --primary-dark-blue: #073B4C;
+    --primary-blue: #118AB2;
+    --primary-green: #06D6A0;
     --primary-yellow: #FFD166;
-    --primary-cream: #FDFBD4;
+    --primary-cream: #FCF6BD;
     
     /* Layout & Surfaces (Light Theme) */
     --bg-light: #FBF7D5;
@@ -25,26 +25,26 @@
     --status-awas: #EF476F;      /* Crimson Alert */
     --status-siaga: #F77F00;     /* Vibrant Orange */
     --status-waspada: #FFD166;   /* Sun Gold */
-    --status-aman: #C8A475;      /* Warm Gold */
+    --status-aman: #06D6A0;      /* Green Success */
     
     /* Status Light Transparents for Badges */
     --status-awas-bg: rgba(239, 71, 111, 0.12);
     --status-siaga-bg: rgba(247, 127, 0, 0.12);
     --status-waspada-bg: rgba(255, 209, 102, 0.15);
-    --status-aman-bg: rgba(200, 164, 117, 0.18);
+    --status-aman-bg: rgba(6, 214, 160, 0.18);
 
     /* Text Colors */
-    --text-primary: #5f4a29;
-    --text-secondary: #6d5c44;
-    --text-muted: #8c7a5b;
+    --text-primary: #073B4C;
+    --text-secondary: #0a4b61;
+    --text-muted: #118AB2;
     --text-light: #FFFFFF;
-    --text-dark: #5f4a29;
+    --text-dark: #073B4C;
     
     /* Glows & Shadows */
-    --glow-blue: 0 4px 14px rgba(157, 134, 65, 0.35);
-    --shadow-premium: 0 10px 30px -5px rgba(94, 74, 41, 0.08), 0 0 1px 1px rgba(94, 74, 41, 0.04);
-    --shadow-flat: 4px 4px 0px 0px #5f4a29;
-    --shadow-flat-hover: 6px 6px 0px 0px #5f4a29;
+    --glow-blue: 0 4px 14px rgba(17, 138, 178, 0.35);
+    --shadow-premium: 0 10px 30px -5px rgba(7, 59, 76, 0.08), 0 0 1px 1px rgba(7, 59, 76, 0.04);
+    --shadow-flat: 4px 4px 0px 0px #073B4C;
+    --shadow-flat-hover: 6px 6px 0px 0px #073B4C;
     
     /* Transition Speed */
     --transition-smooth: all 0.25s cubic-bezier(0.4, 0, 0.2, 1);
@@ -103,7 +103,7 @@ a {
 
 .card-clean:hover {
     transform: translateY(-4px);
-    box-shadow: 0 15px 35px -5px rgba(95, 74, 41, 0.12);
+    box-shadow: 0 15px 35px -5px rgba(7, 59, 76, 0.12);
 }
 
 /* Buttons */
@@ -126,7 +126,7 @@ a {
 .btn-primary:hover {
     transform: translate(-2px, -2px);
     box-shadow: var(--shadow-flat-hover);
-    background: #a27d46;
+    background: #0d6b8c;
 }
 
 .btn-secondary {
@@ -146,7 +146,7 @@ a {
 }
 
 .btn-secondary:hover {
-    background: #faef95;
+    background: #FFD166;
     transform: translate(-2px, -2px);
     box-shadow: var(--shadow-flat-hover);
 }

@@ -22,6 +22,9 @@ class AuthController extends Controller
                 request()->session()->regenerateToken();
             }
         }
+        if (request()->routeIs('admin.login')) {
+            return view('admin.login');
+        }
         return view('login');
     }
 

@@ -1,6 +1,6 @@
 @extends('layouts.app')
 
-@section('title', 'Login Admin — FloodWatch')
+@section('title', 'Admin Portal — FloodWatch')
 
 @section('styles')
     <style>
@@ -11,7 +11,7 @@
             justify-content: center;
             padding: 2rem;
             position: relative;
-            background: radial-gradient(circle at 50% 30%, rgba(252, 246, 189, 0.8) 0%, rgba(252, 246, 189, 1) 100%);
+            background: var(--primary-dark-blue);
         }
 
         .login-card {
@@ -22,8 +22,8 @@
             flex-direction: column;
             gap: 2rem;
             background: #FFFFFF;
-            border: 2px solid var(--primary-dark-blue);
-            box-shadow: var(--shadow-flat);
+            border: 2px solid var(--primary-yellow);
+            box-shadow: 6px 6px 0px 0px var(--primary-yellow);
             border-radius: 20px;
         }
 
@@ -54,6 +54,18 @@
             font-size: 0.9rem;
             color: var(--text-secondary);
             font-weight: 500;
+        }
+
+        .admin-badge {
+            background-color: var(--primary-yellow);
+            color: var(--primary-dark-blue);
+            font-weight: bold;
+            padding: 0.2rem 0.6rem;
+            border-radius: 4px;
+            font-size: 0.8rem;
+            text-transform: uppercase;
+            margin-top: 0.5rem;
+            display: inline-block;
         }
 
         .form-group {
@@ -143,6 +155,7 @@
                     <span>FloodWatch<span class="brand-dot">.</span></span>
                 </a>
                 <p class="login-subtitle">Sistem Informasi Geografis Banjir Lampung</p>
+                <span class="admin-badge">Admin Portal</span>
             </div>
 
             <!-- Login Form -->

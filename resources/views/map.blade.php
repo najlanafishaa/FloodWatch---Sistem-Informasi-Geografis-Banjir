@@ -26,10 +26,9 @@
         <!-- Sidebar Filter Panel -->
         <aside class="map-sidebar glass-panel" id="map-sidebar">
             <div class="sidebar-header">
-                <div class="sidebar-brand">
-                    <svg xmlns="http://www.w3.org/2000/svg" width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" style="color: var(--primary-blue); display: inline-block; vertical-align: middle; margin-right: 0.3rem;"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/></svg>
+                <a href="{{ route('landing') }}" class="sidebar-brand" style="text-decoration: none;">
                     <span>FloodWatch<span class="brand-dot">.</span></span>
-                </div>
+                </a>
                 <button class="sidebar-close-btn" id="sidebar-close-btn">
                     <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><line x1="18" y1="6" x2="6" y2="18"/><line x1="6" y1="6" x2="18" y2="18"/></svg>
                 </button>
@@ -37,8 +36,7 @@
             
             <!-- Tab Navigation -->
             <div class="sidebar-tabs">
-                <button class="tab-btn active" data-tab="realtime">Banjir Aktif</button>
-                <button class="tab-btn" data-tab="kaggle">Analisis Kaggle</button>
+                <button class="tab-btn active" data-tab="realtime" style="width: 100%;">Banjir Aktif</button>
             </div>
 
             <!-- Tab 1: Real-time Content -->
@@ -88,55 +86,7 @@
                 </div>
             </div>
 
-            <!-- Tab 2: Kaggle Dataset Content -->
-            <div class="sidebar-scrollable-content d-none" id="tab-kaggle-content">
-                <!-- Layers Control Section -->
-                <div>
-                    <label class="filter-group-title">Lapisan Peta (Layers)</label>
-                    <div class="layers-container">
-                        <label class="layer-item">
-                            <input type="checkbox" id="layer-geojson-checkbox" checked>
-                            <span class="layer-dot" style="background: var(--primary-blue);"></span>
-                            <span class="layer-label">Batas Administrasi (GeoJSON)</span>
-                        </label>
-                        <label class="layer-item">
-                            <input type="checkbox" id="layer-realtime-checkbox" checked>
-                            <span class="layer-dot" style="background: var(--status-awas);"></span>
-                            <span class="layer-label">Titik Banjir Real-Time</span>
-                        </label>
-                        <label class="layer-item">
-                            <input type="checkbox" id="layer-bps-geojson-checkbox" checked>
-                            <span class="layer-dot" style="background: var(--primary-green);"></span>
-                            <span class="layer-label">Batas Administrasi BPS (GeoJSON)</span>
-                        </label>
-                        <label class="layer-item">
-                            <input type="checkbox" id="layer-esri-checkbox">
-                            <span class="layer-dot" style="background: var(--primary-yellow);"></span>
-                            <span class="layer-label">Esri Satellite Basemap</span>
-                        </label>
-                    </div>
-                </div>
 
-                <!-- Kaggle Weather & Flood Correlation Statistics -->
-                <div>
-                    <div class="results-info-container">
-                        <label class="filter-group-title" style="margin-bottom: 0;">Korelasi Variabel Cuaca</label>
-                        <span class="results-count" id="kaggle-dataset-status">Dataset Lampung</span>
-                    </div>
-                    
-                    <div class="kaggle-stats-grid" id="kaggle-stats-grid">
-                        <div class="stat-loading">Klik tab ini untuk memuat analisis cuaca...</div>
-                    </div>
-                </div>
-
-                <!-- Recent Weather Datasets List -->
-                <div>
-                    <label class="filter-group-title" style="margin-bottom: 0.8rem;">Data Cuaca Historis</label>
-                    <div class="historical-records-list" id="historical-records-list">
-                        <!-- Loaded dynamically via AJAX -->
-                    </div>
-                </div>
-            </div>
         </aside>
 
         <!-- Map Canvas Container -->

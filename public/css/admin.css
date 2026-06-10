@@ -7,13 +7,13 @@
     display: flex;
     min-height: 100vh;
     width: 100%;
-    background-color: var(--primary-cream);
+    background: linear-gradient(135deg, rgba(252, 246, 189, 0.5) 0%, rgba(255, 255, 255, 1) 100%);
 }
 
 /* Admin Sidebar Navigation (Admin page palette aligned with user page) */
 .admin-sidebar {
     width: 280px;
-    background: var(--primary-cream);
+    background: transparent;
     border-right: 3px solid var(--primary-dark-blue);
     display: flex;
     flex-direction: column;
@@ -27,7 +27,7 @@
 }
 
 .admin-logo {
-    font-size: 1.3rem;
+    font-size: 1rem;
     font-weight: 800;
     font-family: 'Poppins', sans-serif;
     color: var(--primary-dark-blue);
@@ -61,11 +61,11 @@
     font-size: 0.9rem;
     transition: var(--transition-smooth);
     background: rgba(255, 255, 255, 0.78);
-    border: 1px solid rgba(95, 74, 41, 0.1);
+    border: 1px solid rgba(7, 59, 76, 0.1);
 }
 
 .admin-nav-item a:hover {
-    background: rgba(139, 111, 56, 0.12);
+    background: rgba(17, 138, 178, 0.12);
     color: var(--primary-blue);
 }
 
@@ -73,11 +73,11 @@
     background: var(--primary-blue);
     color: #FDFBD4;
     border: 2px solid var(--primary-dark-blue);
-    box-shadow: 0 10px 25px rgba(139, 111, 56, 0.12);
+    box-shadow: 0 10px 25px rgba(17, 138, 178, 0.12);
 }
 
 .admin-sidebar-footer {
-    border-top: 1px solid rgba(95, 74, 41, 0.12);
+    border-top: 1px solid rgba(7, 59, 76, 0.12);
     padding-top: 1.5rem;
 }
 
@@ -114,8 +114,8 @@
     flex-direction: column;
     gap: 2.5rem;
     transition: var(--transition-smooth);
-    background-color: var(--primary-cream);
-    border-left: 3px solid rgba(95, 74, 41, 0.12);
+    background: transparent;
+    border-left: 3px solid rgba(7, 59, 76, 0.12);
 }
 
 .admin-page-header {
@@ -180,7 +180,7 @@
 .admin-stat-card {
     background: #FFFFFF;
     border: 2px solid var(--primary-dark-blue);
-    box-shadow: 0 12px 30px rgba(139, 111, 56, 0.08);
+    box-shadow: 0 12px 30px rgba(17, 138, 178, 0.08);
     padding: 1.8rem;
     border-radius: 16px;
     transition: var(--transition-smooth);
@@ -224,7 +224,7 @@
 .panel-card {
     background: #FFFFFF;
     border: 2px solid var(--primary-dark-blue);
-    box-shadow: 0 16px 40px rgba(139, 111, 56, 0.08);
+    box-shadow: 0 16px 40px rgba(17, 138, 178, 0.08);
     padding: 2rem;
     border-radius: 16px;
     display: flex;
@@ -261,7 +261,7 @@
     text-transform: uppercase;
     font-size: 0.8rem;
     letter-spacing: 0.05em;
-    background-color: rgba(139, 111, 56, 0.08);
+    background-color: rgba(17, 138, 178, 0.08);
 }
 
 .admin-table td {

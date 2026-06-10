@@ -10,17 +10,11 @@
     <!-- Navbar -->
     <nav class="nav-container">
         <a href="{{ route('landing') }}" class="brand">
-            <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" style="color: var(--primary-blue);"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/></svg>
             <span>FloodWatch<span class="brand-dot">.</span></span>
         </a>
         <ul class="nav-links">
             <li><a href="{{ route('landing') }}" class="nav-link active">Beranda</a></li>
             <li><a href="{{ route('map') }}" class="nav-link">Peta Interaktif</a></li>
-            @auth
-                <li><a href="{{ route('admin.dashboard') }}" class="btn-secondary" style="padding: 0.5rem 1.2rem; font-size: 0.85rem;">Dashboard</a></li>
-            @else
-                <li><a href="{{ route('admin.login') }}" class="btn-secondary" style="padding: 0.5rem 1.2rem; font-size: 0.85rem;">Login Admin</a></li>
-            @endauth
         </ul>
     </nav>
 
@@ -46,12 +40,6 @@
                 <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polygon points="3 6 9 3 15 6 21 3 21 18 15 21 9 18 3 21"/><line x1="9" y1="3" x2="9" y2="18"/><line x1="15" y1="6" x2="15" y2="21"/></svg>
                 Eksplorasi Peta Digital
             </a>
-            @guest
-                <a href="{{ route('admin.login') }}" class="btn-secondary">
-                    <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M15 3h4a2 2 0 0 1 2 2v14a2 2 0 0 1-2 2h-4"/><polyline points="10 17 15 12 10 7"/><line x1="15" y1="12" x2="3" y2="12"/></svg>
-                    Akses Dashboard Admin
-                </a>
-            @endguest
         </div>
     </section>
 
@@ -154,7 +142,7 @@
                                 <span>Penduduk Terdampak: <strong>{{ number_format($update->affected_population) }} Jiwa</strong></span>
                             </div>
                             <div class="detail-item">
-                                <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="10" r="3"/><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/></svg>
+                                <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z"/><circle cx="12" cy="10" r="3"/></svg>
                                 <span>Koordinat: <strong>{{ $update->latitude }}, {{ $update->longitude }}</strong></span>
                             </div>
                         </div>
@@ -171,8 +159,7 @@
     <!-- Footer -->
     <footer>
         <div class="footer-content">
-            <div class="brand">
-                <svg xmlns="http://www.w3.org/2000/svg" width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" style="color: var(--primary-blue);"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/></svg>
+            <div class="footer-brand">
                 <span>FloodWatch<span>.</span></span>
             </div>
             <p class="footer-text">Sistem Informasi Geografis (SIG) Pemetaan Banjir Lampung terintegrasi, memberikan transparansi informasi bencana guna meningkatkan mitigasi dan keamanan sipil.</p>
